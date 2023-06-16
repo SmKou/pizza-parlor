@@ -37,5 +37,20 @@ window.onload = () => {
         }
     }
 
-    
+    const listeners = document.querySelectorAll('form.pizza-details [type="radio"], form.pizza-details [type="checkbox"]');
+    listeners.forEach(e => e.addEventListener('change', (event) => {
+
+    }))
+
+    const pizzaDetailsForm = document.querySelector('form.pizza-details');
+    pizzaDetailsForm.addEventListener('submit', () => {
+        pizzaForm.setSize();
+        pizzaForm.setSauce();
+        if (document.querySelector('[name="pizza-preset"]:checked'))
+            pizzaForm.setPreset();
+        if (document.querySelector('[name="pizza-produce"]:checked'))
+            pizzaForm.setProduce();
+        if (document.querySelector('[name="pizza-protein"]:checked'))
+            pizzaForm.setProtein();
+    })
 }
