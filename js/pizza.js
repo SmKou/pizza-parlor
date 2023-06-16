@@ -1,10 +1,5 @@
 const PIZZA_TOPPINGS = {
     type: {
-        sauce: {
-            'sm': 0,
-            'mm': 0.5,
-            'lg': 1
-        },
         produce: {
             free: 3,
             price: 0.5
@@ -26,12 +21,12 @@ const PIZZA_TOPPINGS = {
         },
         'mm': {
             fullname: 'Medium',
-            price: 12,
+            price: 12.5,
             radius: 14
         },
         'lg': {
             fullname: 'Large',
-            price: 16,
+            price: 17,
             radius: 20
         }
     },
@@ -142,6 +137,22 @@ const PIZZA_TOPPINGS = {
     }
 }
 
+PIZZA_TOPPINGS.returnFullName = function (shortcode) {
+    if (PIZZA_TOPPINGS.size.hasOwnProperty(shortcode))
+        return PIZZA_TOPPINGS.size[shortcode].fullname;
+    else if (PIZZA_TOPPINGS.sauce.hasOwnProperty(shortcode))
+        return PIZZA_TOPPINGS.sauce[shortcode];
+    else if (PIZZA_TOPPINGS.produce.hasOwnProperty(shortcode))
+        return PIZZA_TOPPINGS.produce[shortcode];
+    else if (PIZZA_TOPPINGS.protein.hasOwnProperty(shortcode))
+        return PIZZA_TOPPINGS.protein[shortcode];
+    else if (PIZZA_TOPPINGS.cheese.hasOwnProperty(shortcode))
+        return PIZZA_TOPPINGS.cheese[shortcode];
+    else if (PIZZA_TOPPINGS.preset.hasOwnProperty(shortcode))
+        return PIZZA_TOPPINGS.preset[shortcode].fullname;
+    return '';
+}
+
 function Receipt() {
     this.pizzas = [];
     this.total = 0;
@@ -152,7 +163,7 @@ function Receipt() {
 
 function Pizza() {
     this.price = 0;
-    this.size = '';
+    this.size = 'sm';
     this.toppings = {
         sauce: 'mgh',
         produce: [],
@@ -161,6 +172,43 @@ function Pizza() {
     };
 }
 
-Pizza.prototype.addTopping = function (type, item) { }
+Pizza.prototype.setSize = function (size) {
+    if (!this.size && size.length === 2)
+        this.size = size;
+    this.calculateCost();
+}
 
-Pizza.prototype.calculateCost = function () { }
+Pizza.prototype.addTopping = function (type, item) { 
+    const topping = this.toppings[type];
+    if (type === 'sauce' && topping !== item)
+        this.toppings[type] = item;
+    else if (!topping.includes(item))
+        topping = [...topping, item];
+    this.calculateCost();
+}
+
+Pizza.prototype.removeTopping = function (type, item = '') {
+    const topping = this.toppings[type];
+    if (type === 'sauce')
+        topping = 'mgh';
+    else if (item && topping.includes(item)) {
+        const i = topping.indexOf(item);
+        topping.splice(i, 1);
+    }
+    this.calculateCost();
+}
+
+Pizza.prototype.calculateCost = function () {
+    if (!this.size)
+        return this.price;
+    let total = 0;
+    total += PIZZA_TOPPINGS.size[this.size].price;
+    for (const topping of Object.keys(this.toppings)) {
+        if (topping === 'sauce')
+            total += PIZZA_TOPPINGS.sauce[this.size];
+        else
+            total += (this.toppings[topping].length - PIZZA_TOPPINGS[topping].free) * PIZZA_TOPPINGS[topping].price;
+    }
+    this.price = total;
+    return this.price;
+ }
