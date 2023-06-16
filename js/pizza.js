@@ -161,54 +161,59 @@ function Receipt() {
     this.status = false;
 }
 
-function Pizza() {
-    this.price = 0;
-    this.size = 'sm';
-    this.toppings = {
-        sauce: 'mgh',
-        produce: [],
-        protein: [],
-        cheese: []
-    };
-}
-
-Pizza.prototype.setSize = function (size) {
-    if (!this.size && size.length === 2)
-        this.size = size;
-    this.calculateCost();
-}
-
-Pizza.prototype.addTopping = function (type, item) { 
-    const topping = this.toppings[type];
-    if (type === 'sauce' && topping !== item)
-        this.toppings[type] = item;
-    else if (!topping.includes(item))
-        topping = [...topping, item];
-    this.calculateCost();
-}
-
-Pizza.prototype.removeTopping = function (type, item = '') {
-    const topping = this.toppings[type];
-    if (type === 'sauce')
-        topping = 'mgh';
-    else if (item && topping.includes(item)) {
-        const i = topping.indexOf(item);
-        topping.splice(i, 1);
+class Pizza {
+    constructor() {
+        this.calculateCost();
+        this.price = 0;
+        this.size = 'sm';
+        this.toppings = {
+            sauce: 'mgh',
+            produce: [],
+            protein: [],
+            cheese: []
+        };
     }
-    this.calculateCost();
-}
+    
+    set size(size) {
+        if (['sm', 'mm', 'lg'].includes(size))
+            this.size = size;
+        this.calculateCost();
+    }
 
-Pizza.prototype.calculateCost = function () {
-    if (!this.size)
+    addTopping(type, item) {
+        const topping = this.toppings[type];
+        if (type === 'sauce' && topping !== item)
+            this.toppings[type] = item;
+        else if (!topping.includes(item))
+            topping.push(item);
+        this.calculateCost();
+    }
+
+    removeTopping(type, item = '') {
+        const topping = this.toppings[type];
+        if (type === 'sauce')
+            topping = 'mgh';
+        else if (item && topping.includes(item)) {
+            const i = topping.indexOf(item);
+            topping.splice(i, 1);
+        }
+        this.calculateCost();
+    }
+
+    calculateCost() {
+        if (!this.size)
+            return this.price;
+        let total = 0;
+        total += PIZZA_TOPPINGS.size[this.size].price;
+        for (const topping of Object.keys(this.toppings)) {
+            if (topping === 'sauce')
+                total += PIZZA_TOPPINGS.sauce[this.size];
+            else
+                total += (this.toppings[topping].length - PIZZA_TOPPINGS[topping].free) * PIZZA_TOPPINGS[topping].price;
+        }
+        this.price = total;
         return this.price;
-    let total = 0;
-    total += PIZZA_TOPPINGS.size[this.size].price;
-    for (const topping of Object.keys(this.toppings)) {
-        if (topping === 'sauce')
-            total += PIZZA_TOPPINGS.sauce[this.size];
-        else
-            total += (this.toppings[topping].length - PIZZA_TOPPINGS[topping].free) * PIZZA_TOPPINGS[topping].price;
     }
-    this.price = total;
-    return this.price;
- }
+}
+ 
+const pizza = new Pizza();

@@ -3,9 +3,7 @@ const tests = {
     "Pizza.calculatorCost": {
         "1": {
             test: "If a pizza object is declared, its price should be 0.",
-            input: {
-                pizza: 'Pizza()',
-            },
+            code: `const pizza = new Pizza();\n\tpizza.calculateCost();`,
             expected: 0,
             parent: null,
             result: function () {
@@ -18,14 +16,12 @@ const tests = {
     "Pizza.setSize": {
         "1": {
             test: "If the size on a pizza object is set, its price should be the base price for the size plus sauce based on the size.",
-            input: {
-                pizza: 'Pizza()',
-                size: 'mm'
-            },
+            code: `const pizza = new Pizza();\n\tconst size = 'mm'\n\tpizza.setSize(size);`,
             expected: 12.5,
             result: function () {
                 const pizza = new Pizza();
-                pizza.setSize(this.input.size);
+                const size = 'mm';
+                pizza.setSize(size);
                 return pizza.price;
             }
         }
@@ -33,109 +29,95 @@ const tests = {
     "Pizza.addTopping": {
         "1": {
             test: "If a produce topping is added to a pizza object, the price should be the size's base price.",
-            input: {
-                pizza: 'Pizza()',
-                type: 'produce',
-                produce: ['bp']
-            },
+            code: `const pizza = new Pizza();\n\tconst type = 'produce';\n\tconst items = ['bp];\n\tfor (const itm of items)\n\t\tpizza.addTopping(type, itm);`,
             expected: 8,
             result: function () {
                 const pizza = new Pizza();
-                for (const itm of this.input.produce)
-                    pizza.addTopping(this.input.type, itm);
+                const type = 'produce';
+                const items = ['bp'];
+                for (const itm of items)
+                    pizza.addTopping(type, itm);
                 return pizza.price;
             }
         },
         "2": {
             test: "If four produce toppings are added to a pizza object, the price should be the size's base price plus one produce topping.",
-            input: {
-                pizza: 'Pizza()',
-                type: 'produce',
-                produce: ['bp', 'cp', 'bo', 'ro']
-            },
+            code: `const pizza = new Pizza();\n\tconst type = 'produce';\n\tconst items = ['bp', 'cp', 'bo', 'ro'];\n\tfor (const itm of items)\n\t\tpizza.addTopping(type, itm);`,
             expected: 8.5,
             result: function () {
                 const pizza = new Pizza();
-                for (const itm of this.input.produce)
-                    pizza.addTopping(this.input.type, itm);
+                const type = 'produce';
+                const produce = ['bp', 'cp', 'bo', 'ro'];
+                for (const itm of produce)
+                    pizza.addTopping(type, itm);
                 return pizza.price;
             }
         },
         "3": {
             test: "If a protein topping is added to a pizza object, the price should be the size's base price.",
-            input: {
-                pizza: 'Pizza()',
-                type: 'protein',
-                protein: ['pep']
-            },
+            code: `const pizza = new Pizza();\n\tconst type = 'protein';\n\tconst items = ['pep'];\n\tfor (const itm of items)\n\t\tpizza.addTopping(type, itm);`,
             expected: 8,
             result: function () {
                 const pizza = new Pizza();
-                for (const itm of this.input.protein)
-                    pizza.addTopping(this.input.type, itm);
+                const type = 'protein';
+                const items = ['pep'];
+                for (const itm of items)
+                    pizza.addTopping(type, itm);
                 return pizza.price;
             }
         },
         "4": {
             test: "If two protein toppings are added to a pizza object, the price should be the size's base price plus one protein topping.",
-            input: {
-                pizza: 'Pizza()',
-                type: 'protein',
-                protein: ['pep', 'hm']
-            },
+            code: `const pizza = new Pizza();\n\tconst type = 'protein';\n\tconst items = ['pep', 'hm'];\n\tfor (const itm of items)\n\t\tpizza.addTopping(type, itm);`,
             expected: 9,
             result: function () {
                 const pizza = new Pizza();
-                for (const itm of this.input.protein)
-                    pizza.addTopping(this.input.type, itm);
+                const type = 'protein';
+                const items = ['pep', 'hm'];
+                for (const itm of items)
+                    pizza.addTopping(type, itm);
                 return pizza.price;
             }
         },
         "5": {
             test: "If a cheese topping is added to a pizza object, the price should be the size's base price.",
-            input: {
-                pizza: 'Pizza()',
-                type: 'cheese',
-                protein: ['moz']
-            },
+            code: `const pizza = new Pizza();\n\tconst type = 'cheese';\n\tconst items = ['moz'];\n\tfor (const itm of items)\n\t\tpizza.addTopping(type, itm);`,
             expected: 8,
             result: function () {
                 const pizza = new Pizza();
-                for (const itm of this.input.cheese)
-                    pizza.addTopping(this.input.type, itm);
+                const type = 'cheese';
+                const items = ['moz'];
+                for (const itm of items)
+                    pizza.addTopping(type, itm);
                 return pizza.price;
             }
         },
         "6": {
             test: "If two cheese toppings are added to a pizza object, the price should be the size's base price plus one cheese topping.",
-            input: {
-                pizza: 'Pizza()',
-                type: 'cheese',
-                cheese: ['moz', 'prm']
-            },
+            code: `const pizza = new Pizza();\n\tconst type = 'cheese';\n\tconst items = ['moz', 'prm'];\n\tfor (const itm of items)\n\t\tpizza.addTopping(type, itm);`,
             expected: 8.75,
             result: function () {
                 const pizza = new Pizza();
-                for (const itm of this.input.cheese)
-                    pizza.addTopping(this.input.type, itm);
+                const type = 'cheese';
+                const items = ['moz', 'prm'];
+                for (const itm of items)
+                    pizza.addTopping(type, itm);
                 return pizza.price;
             }
         },
         "7": {
             test: "If four produce toppings, two protein toppings, and two cheese toppings are added to a pizza object, the price should be the size's base price plus one produce topping, protein topping, and cheese topping.",
-            input: {
-                pizza: 'Pizza()',
-                toppings: {
-                    produce: ['bp', 'cp', 'bo', 'ro'],
-                    protein: ['pep', 'hm'],
-                    cheese: ['moz', 'prm']
-                }
-            },
+            code: `const pizza = new Pizza();\n\tconst toppings = {\n\t\tproduce: ['bp', 'cp', 'bo', 'ro'],\n\t\tprotein: ['pep', 'hm'],\n\t\tcheese: ['moz', 'prm']\n\t};\n\tfor (const itm of items)\n\t\tfor (const type of Object.keys(toppings))\n\t\tfor (const itm of toppings[type])\n\t\t\tpizza.addTopping(type, itm);`,
             expected: 10.25,
             result: function () {
                 const pizza = new Pizza();
-                for (const type of Object.keys(this.input.toppings))
-                    for (const itm of Object.keys(this.input.toppings[type]))
+                const toppings = {
+                    produce: ['bp', 'cp', 'bo', 'ro'],
+                    protein: ['pep', 'hm'],
+                    cheese: ['moz', 'prm']
+                };
+                for (const type of Object.keys(toppings))
+                    for (const itm of toppings[type])
                         pizza.addTopping(type, itm);
                 return pizza.price;
             }
@@ -144,28 +126,40 @@ const tests = {
     "Pizza.removeTopping": {
         "1": {
             test: "If the sauce from a pizza object is removed, the sauce should be set to margherita.",
-            input: {
-                pizza: function () {
-                    const pizza = new Pizza();
-                    pizza.addTopping('sauce', 'pnk');
-                    return pizza;
-                },
-                remove: {
-                    type: 'sauce'
-                }
-            },
-            expected: function () {
-                const pizza = new Pizza();
-                return pizza;
-            },
+            code: `const pizza = new Pizza();\n\tconst type = 'sauce';\n\tpizza.addTopping('sauce', 'pnk');\n\tpizza.removeTopping(type);`,
+            expected: JSON.stringify(new Pizza()),
             result: function () {
-                const pizza = this.input.pizza();
-                pizza.removeTopping('sauce');
-                return pizza;
+                const pizza = new Pizza();
+                const type = 'sauce';
+                pizza.addTopping('sauce', 'pnk');
+                pizza.removeTopping(type);
+                return JSON.stringify(pizza);
             }
         },
         "2": {
-            test: ""
+            test: "If a produce topping is removed from four produce toppings, a protein topping from two protein toppings, and a cheese topping from two cheese toppings of a pizza object, the price should be the size's base price.",
+            code: `const pizza = new Pizza();\n\tconst toppings = {\n\t\tproduce: ['bp', 'cp', 'bo', 'ro'],\n\t\tprotein: ['pep', 'hm'],\n\t\tcheese: ['moz', 'prm']\n\t};\n\tconst remove = {\n\t\tproduce: ['bp'],\n\t\tprotein: ['hm'],\n\t\tcheese: ['prm']\n\t};\n\tfor (const type of Object.keys(toppings))\n\t\tfor (const itm of toppings[type])\n\t\t\tpizza.addTopping(type, itm);\n\tfor (const type of Object.keys(remove))\n\t\tfor (const itm of remove[type])\n\t\t\tpizza.removeTopping(type, itm);`,
+            expected: 8,
+            result: function () {
+                const pizza = new Pizza();
+                const toppings = {
+                    produce: ['bp', 'cp', 'bo', 'ro'],
+                    protein: ['pep', 'hm'],
+                    cheese: ['moz', 'prm']
+                };
+                const remove = {
+                    produce: ['bp'],
+                    protein: ['hm'],
+                    cheese: ['prm']
+                };
+                for (const type of Object.keys(toppings))
+                    for (const itm of toppings[type])
+                        pizza.addTopping(type, itm);
+                for (const type of Object.keys(remove))
+                    for (const itm of remove[type])
+                        pizza.removeTopping(type, itm);
+                return pizza.price;
+            }
         }
     }
 }
@@ -185,7 +179,7 @@ function listFunctions() {
     }
 }
 
-function runTests(funcName, testsList = true) {
+function runTests(funcName = '', testsList = true) {
     if (!funcName.length)
         if (testsList)
             Object.keys(tests).forEach(fn => describeFuncTest(fn))
@@ -210,17 +204,18 @@ function runTests(funcName, testsList = true) {
 }
 
 function runFuncTest(funcName) {
-    Object.keys(tests[funcName]).forEach(testCase => {
-        const test = tests[funcName][testCase];
-        test.result.parent = test;
-    })
+    // Object.keys(tests[funcName]).forEach(testCase => {
+    //     const test = tests[funcName][testCase];
+    //     test.result.parent = test;
+    // })
 
     Object.keys(tests[funcName]).forEach(testCase => {
         const test = tests[funcName][testCase];
-        const outcome = test.result.exec();
+        const expected = formatReturn(test.expected);
+        const outcome = formatReturn(test.result());
         console.log(`${funcName} Test ${testCase}
-        expected: ${formatReturn(test.expected)}
-        result: ${formatReturn(outcome)}`);
+        expected: ${expected}
+        result: ${outcome}`);
     })
 }
 
@@ -229,15 +224,8 @@ function describeFuncTest(funcName) {
     Object.keys(tests[funcName]).forEach(testCase => {
         const testObj = tests[funcName][testCase];
         console.log('Test ' + testCase, testObj.test);
-        const iptName = Object.keys(testObj.input);
-        const ipt = iptName.reduce((acc, val, i) => {
-            if (i !== 0)
-                acc += '\n\t';
-            acc += `const ${val} = ${formatReturn(testObj.input[val])}`
-
-        }, "");
-        console.log('Code: ', `${ipt}\n\t${funcName}(${iptName.join(', ')})`);
-        console.log('Expected output: ', testObj.expected);
+        console.log('Code: ', testObj.code);
+        console.log('Expected output: ', formatReturn(testObj.expected));
     })
 }
 
@@ -249,14 +237,6 @@ function formatReturn(data) {
             break;
         case 'string':
             dataStr = (data) ? data : '\"\"';
-            break;
-        case 'object':
-            if (data === null)
-                dataStr = 'null';
-            else if (Array.isArray(data))
-                dataStr = (data.length) ? data.toString() : 'undefined';
-            else
-                dataStr = (Object.keys(data).length) ? JSON.stringify(data) : 'undefined'
             break;
         case 'number':
             dataStr = (data) ? data.toString() : '0';
