@@ -1,34 +1,13 @@
 const PIZZA_TOPPINGS = {
     type: {
-        produce: {
-            free: 3,
-            price: 0.5
-        },
-        protein: {
-            free: 1,
-            price: 1
-        },
-        cheese: {
-            free: 1,
-            price: 0.75
-        }
+        produce: { free: 3, price: 0.5 },
+        protein: { free: 1, price: 1 },
+        cheese: { free: 1, price: 0.75 }
     },
     size: {
-        'sm': {
-            fullname: 'Small',
-            price: 8,
-            radius: 10
-        },
-        'mm': {
-            fullname: 'Medium',
-            price: 12.5,
-            radius: 14
-        },
-        'lg': {
-            fullname: 'Large',
-            price: 17,
-            radius: 20
-        }
+        'sm': { fullname: 'Small', price: 8, radius: 10 },
+        'mm': { fullname: 'Medium', price: 12.5, radius: 14 },
+        'lg': { fullname: 'Large', price: 17, radius: 20 }
     },
     sauce: {
         'mgh': 'Margherita',
@@ -163,9 +142,8 @@ function Receipt() {
 
 class Pizza {
     constructor() {
-        this.calculateCost();
-        this.price = 0;
         this.size = 'sm';
+        this.price = 0;
         this.toppings = {
             sauce: 'mgh',
             produce: [],
@@ -174,10 +152,14 @@ class Pizza {
         };
     }
     
-    set size(size) {
-        if (['sm', 'mm', 'lg'].includes(size))
-            this.size = size;
-        this.calculateCost();
+    size(s) {
+        if (['sm', 'mm', 'lg'].includes(s))
+            this.size = s;
+    }
+
+    price(p) {
+        if (s >= 0)
+            this.price = p;
     }
 
     addTopping(type, item) {
@@ -186,7 +168,6 @@ class Pizza {
             this.toppings[type] = item;
         else if (!topping.includes(item))
             topping.push(item);
-        this.calculateCost();
     }
 
     removeTopping(type, item = '') {
@@ -197,23 +178,24 @@ class Pizza {
             const i = topping.indexOf(item);
             topping.splice(i, 1);
         }
-        this.calculateCost();
+    }
+}
+
+function calculateCost(pizza) {
+    if (!pizza.size)
+        return 0;
+    const size = pizza.size;
+
+    let total = 0;
+    total += PIZZA_TOPPINGS.size[size].price;
+    for (const topping of Object.keys(pizza.toppings)) {
+        if (topping !== 'sauce')
+            total += (pizza.toppings[topping].length - PIZZA_TOPPINGS.type[topping].free) * PIZZA_TOPPINGS.type[topping].price;
     }
 
-    calculateCost() {
-        if (!this.size)
-            return this.price;
-        let total = 0;
-        total += PIZZA_TOPPINGS.size[this.size].price;
-        for (const topping of Object.keys(this.toppings)) {
-            if (topping === 'sauce')
-                total += PIZZA_TOPPINGS.sauce[this.size];
-            else
-                total += (this.toppings[topping].length - PIZZA_TOPPINGS[topping].free) * PIZZA_TOPPINGS[topping].price;
-        }
-        this.price = total;
-        return this.price;
-    }
+    pizza.price(total);
+    return total;
 }
  
 const pizza = new Pizza();
+console.log(JSON.stringify(pizza));
