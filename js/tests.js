@@ -8,7 +8,7 @@ const tests = {
             result: function () {
                 const pizza = new Pizza();
                 const size = 'mm';
-                pizza.size(size);
+                pizza.setSize(size);
                 return JSON.stringify(pizza);
             }
         }
@@ -211,18 +211,12 @@ function runTests(funcName = '', testsList = true) {
 }
 
 function runFuncTest(funcName) {
-    // Object.keys(tests[funcName]).forEach(testCase => {
-    //     const test = tests[funcName][testCase];
-    //     test.result.parent = test;
-    // })
-
     Object.keys(tests[funcName]).forEach(testCase => {
         const test = tests[funcName][testCase];
         const expected = formatReturn(test.expected);
         const outcome = formatReturn(test.result());
         console.log(`${funcName} Test ${testCase}
-        expected: ${expected}
-        result: ${outcome}`);
+            status: ${expected === outcome}`);
     })
 }
 
