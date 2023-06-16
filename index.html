@@ -254,22 +254,14 @@
                 </div>
             </form>
         </section>
-        <section class="receipt">
+        <section class="receipt hidden">
             <h2>Receipt</h2>
             <div class="list"></div>
             <form class="customer">
                 <div class="customer-name">
-                    <label for="customer-ordername">
+                    <label for="customer-name">
                         Name on Order:
-                        <input type="text" id="customer-ordername" pattern="/\w+/i" required>
-                    </label>
-                    <label for="customer-firstname">
-                        First name:
-                        <input type="text" id="customer-firstname" pattern="/\w+/i">
-                    </label>
-                    <label for="customer-lastname">
-                        Last name:
-                        <input type="text" id="customer-lastname" pattern="/\w+/i">
+                        <input type="text" id="customer-name" pattern="/\w+/i" required>
                     </label>
                 </div>
                 <div class="customer-addr">
@@ -283,7 +275,7 @@
                 </div>
             </form>
         </section>
-        <section class="confirmation">
+        <section class="confirmation hidden">
             <h2>Confirmation</h2>
             <div class="status"></div>
             <div class="confirm">

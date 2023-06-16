@@ -132,14 +132,6 @@ PIZZA_TOPPINGS.returnFullName = function (shortcode) {
     return '';
 }
 
-function Receipt() {
-    this.pizzas = [];
-    this.total = 0;
-    this.customer = '';
-    this.address = '';
-    this.status = false;
-}
-
 class Pizza {
     constructor() {
         this.size = 'sm';
