@@ -36,24 +36,9 @@ body {
 }
 
 /* skeleton: container */ main {
-    position: relative;
     width: 100%;
-    max-width: 960px;
     margin: 0 auto;
     padding: 0 2.0rem;
-}
-
-/* skeleton: container */ @media (min-width: 400px) {
-    main {
-        width: 85%;
-        padding: 0;
-    }
-}
-
-/* skeleton: container */ @media (min-width: 550px) {
-    main {
-        width: 80%
-    }
 }
 
 /* Typography
@@ -224,7 +209,52 @@ pre, code { background: #CCC }
 /* Template sections
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
+header {
+    width: 100%;
+    display: flex;
+}
 
+.order-step {
+    width: calc(100% / 3);
+    text-align: center;
+}
+
+form {
+    width: 98%;
+    max-width: 320px;
+}
+
+form h3 {
+
+}
+
+form div {
+    width: 100%;
+    padding: 0;
+}
+
+.radio,
+.checkbox {
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+[type='radio'],
+[type='checkbox'] {
+    position: absolute;
+    top: 3.5px;
+    left: -7px;
+    width: 14px;
+    height: 14px;
+}
+
+label {
+    position: relative;
+    width: 50%;
+    padding-left: 22px;
+}
 
 /* Messages and Notices
 –––––––––––––––––––––––––––––––––––––––––––––––––– */

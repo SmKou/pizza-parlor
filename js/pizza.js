@@ -82,14 +82,14 @@ const PIZZA_TOPPINGS = {
         'mgh': {
             fullname: 'Margherita',
             sauce: 'mgh',
-            produce: 'bsl',
+            produce: ['bsl'],
             cheese: 'moz'
         },
         'sup': {
             fullname: 'Supreme',
             sauce: 'mgh',
             produce: ['bp', 'bo', 'ro', 'msh'],
-            cheese: 'moz',
+            cheese: ['moz'],
             protein: ['pep', 'ssg']
         },
         'ch': {
@@ -105,39 +105,62 @@ const PIZZA_TOPPINGS = {
             fullname: 'White',
             sauce: 'afo',
             cheese: ['moz', 'prm', 'rct'],
-            produce: 'glc'
+            produce: ['glc']
         },
         'grk': {
             fullname: 'Greek',
             sauce: 'mgh',
-            cheese: 'ft',
+            cheese: ['ft'],
             produce: ['sp', 'bo', 'tto', 'ro']
         },
         'bf': {
             fullname: 'Breakfast',
-            protein: 'eg',
+            protein: ['eg'],
             sauce: 'mgh',
             produce: ['bp', 'ro', 'tto'],
-            cheese: 'moz'
+            cheese: ['moz']
         },
         'cap': {
             fullname: 'Caprese',
             sauce: 'mgh',
             produce: ['bsl', 'tto'],
-            cheese: 'moz'
+            cheese: ['moz']
         },
         'hwn': {
             fullname: 'Hawaiian',
             sauce: 'bbq',
-            produce: 'pin',
-            protein: 'hm',
-            cheese: 'moz'
+            produce: ['pin'],
+            protein: ['hm'],
+            cheese: ['moz']
         },
         'jlp': {
             fullname: 'Jalapeño',
             sauce: 'bbq',
             produce: ['zuc', 'sc', 'ro', 'jlp'],
-            cheese: 'moz'
+            cheese: ['moz']
         }
     }
 }
+
+function Receipt() {
+    this.pizzas = [];
+    this.total = 0;
+    this.customer = '';
+    this.address = '';
+    this.status = false;
+}
+
+function Pizza() {
+    this.price = 0;
+    this.size = '';
+    this.toppings = {
+        sauce: 'mgh',
+        produce: [],
+        protein: [],
+        cheese: []
+    };
+}
+
+Pizza.prototype.addTopping = function (type, item) { }
+
+Pizza.prototype.calculateCost = function () { }
