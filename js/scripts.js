@@ -16,17 +16,11 @@ function updateItems(name, prop) {
 window.onload = () => {
     const pizzaForm = {
         size: 'sm',
-        setSize: function () { updateItem('pizza-size', this.size) },
         preset: '',
-        setPreset: function () { updateItem('pizza-preset', this.preset) },
         sauce: 'mgh',
-        setSauce: function () { updateItem('pizza-sauce', this.sauce) },
         produce: [],
-        setProduce: function () { updateItems('pizza-produce', this.produce) },
         protein: [],
-        setProtein: function () { updateItems('pizza-protein', this.protein) },
         cheese: [],
-        setCheese: function () { updateItems('pizza-cheese', this.cheese) },
         reset: function () {
             this.size = 'sm';
             this.preset = '';
@@ -36,21 +30,38 @@ window.onload = () => {
             this.cheese = [];
         }
     }
+    let activeSection = '#pizza-size';
+    const receipt = new Receipt();
+    let pizza = new Pizza();
 
-    const listeners = document.querySelectorAll('form.pizza-details [type="radio"], form.pizza-details [type="checkbox"]');
-    listeners.forEach(e => e.addEventListener('change', (event) => {
+    const pizzaDetails = document.querySelectorAll('h3.button');
+    pizzaDetails.forEach(elem => {
+        elem.addEventListener('click', e => {
+            document.querySelector(activeSection).classList.add('hidden');
+            const id = '#pizza-' + e.target.id.split('-')[0];
+            activeSection = id;
+            document.querySelector(activeSection).classList.remove('hidden');
+        })
+    })
 
-    }))
-
-    const pizzaDetailsForm = document.querySelector('form.pizza-details');
-    pizzaDetailsForm.addEventListener('submit', () => {
-        pizzaForm.setSize();
-        pizzaForm.setSauce();
-        if (document.querySelector('[name="pizza-preset"]:checked'))
-            pizzaForm.setPreset();
-        if (document.querySelector('[name="pizza-produce"]:checked'))
-            pizzaForm.setProduce();
-        if (document.querySelector('[name="pizza-protein"]:checked'))
-            pizzaForm.setProtein();
+    const pizzaOptions = document.querySelectorAll('.pizza [type="radio"], .pizza [type="checkbox"]');
+    pizzaOptions.forEach(elem => {
+        elem.addEventListener('change', (e) => {
+            const type = e.target.name;
+            const itm = e.target.value;
+            if (e.checked) {
+                if (type === 'size')
+                    pizza.setSize(itm);
+                else if (type === 'preset')
+                    pizza.setPreset(itm);
+                else
+                    pizza.addTopping(type, itm);
+            }
+            else {
+                if (type !== 'size' && type !== 'preset')
+                    pizza.removeTopping(type, itm);
+            }
+            console.log(pizza);
+        })
     })
 }

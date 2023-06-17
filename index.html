@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pizza Parlor</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Anonymous+Pro:wght@400;700&family=Raleway:wght@100;400;700&family=Righteous&display=swap');
+    </style>
     <link rel="stylesheet" href="css/styles.css">
     <script src="js/pizza.js"></script>
     <script src="js/parlor.js"></script>
@@ -11,232 +14,231 @@
     <script src="js/tests.js"></script>
 </head>
 <body>
-    <header>
-        <div class="order-step step-1 active">Order</div>
-        <div class="order-step step-2">Receipt</div>
-        <div class="order-step step-3">Status</div>
-    </header>
     <main>
         <section class="pizza-order">
-            <form class="pizza-details">
-                <div class="pizza-size">
-                    <h3 class="button">Pizza Size<span class="amount"></span></h3>
-                    <div class="radio">
+            <header>
+                <h1>Pizza Parlor</h1>
+                <p></p>
+            </header>
+            <form>
+                <div class="pizza">
+                    <h3 class="button" id="size-btn">Pizza Size</h3>
+                    <div class="radio" id="pizza-size">
                         <label for="size-sm">
-                            <input type="radio" id="size-sm" name="pizza-size" value="sm" checked>
+                            <input type="radio" id="size-sm" name="size" value="sm" checked>
                             Small
                         </label>
                         <label for="size-mm">
-                            <input type="radio" id="size-mm" name="pizza-size" value="mm">
+                            <input type="radio" id="size-mm" name="size" value="mm">
                             Medium
                         </label>
                         <label for="size-lg">
-                            <input type="radio" id="size-lg" name="pizza-size" value="lg">
+                            <input type="radio" id="size-lg" name="size" value="lg">
                             Large
                         </label>
                     </div>
                 </div>
-                <div class="pizza-presets">
-                    <h3 class="button">Presets</h3>
-                    <div class="radio">
+                <div class="pizza">
+                    <h3 class="button" id="preset-btn">Presets</h3>
+                    <div class="radio hidden" id="pizza-preset">
                         <label for="preset-mgh">
-                            <input type="radio" id="preset-mgh" name="pizza-preset" value="mgh">
+                            <input type="radio" id="preset-mgh" name="preset" value="mgh">
                             Margherita
                         </label>
                         <label for="preset-sup">
-                            <input type="radio" id="preset-sup" name="pizza-preset" value="sup">
+                            <input type="radio" id="preset-sup" name="preset" value="sup">
                             Supreme
                         </label>
                         <label for="preset-ch">
-                            <input type="radio" id="preset-ch" name="pizza-preset" value="ch">
+                            <input type="radio" id="preset-ch" name="preset" value="ch">
                             Five Cheese
                         </label>
                         <label for="preset-sa">
-                            <input type="radio" id="preset-sa" name="pizza-preset" value="sa">
+                            <input type="radio" id="preset-sa" name="preset" value="sa">
                             Spinach and Artichoke
                         </label>
                         <label for="preset-wt">
-                            <input type="radio" id="preset-wt" name="pizza-preset" value="wt">
+                            <input type="radio" id="preset-wt" name="preset" value="wt">
                             Blanca
                         </label>
                         <label for="preset-grk">
-                            <input type="radio" id="preset-grk" name="pizza-preset" value="grk">
+                            <input type="radio" id="preset-grk" name="preset" value="grk">
                             Greek
                         </label>
                         <label for="preset-bf">
-                            <input type="radio" id="preset-bf" name="pizza-preset" value="bf">
+                            <input type="radio" id="preset-bf" name="preset" value="bf">
                             Breakfast
                         </label>
                         <label for="preset-cap">
-                            <input type="radio" id="preset-cap" name="pizza-preset" value="cap">
+                            <input type="radio" id="preset-cap" name="preset" value="cap">
                             Caprese
                         </label>
                         <label for="preset-hwn">
-                            <input type="radio" id="preset-hwn" name="pizza-preset" value="hwn">
+                            <input type="radio" id="preset-hwn" name="preset" value="hwn">
                             Hawaiian
                         </label>
                         <label for="preset-jlp">
-                            <input type="radio" id="preset-jlp" name="pizza-preset" value="jlp">
+                            <input type="radio" id="preset-jlp" name="preset" value="jlp">
                             Jalapeño
                         </label>
                     </div>
                 </div>
-                <div class="pizza-sauce">
-                    <h3 class="button">Pizza Sauce<span class="amount">0</span></h3>
-                    <div class="radio">
+                <div class="pizza">
+                    <h3 class="button" id="sauce-btn">Pizza Sauce</h3>
+                    <div class="radio hidden" id="pizza-sauce">
                         <label for="sauce-mgh">
-                            <input type="radio" id="sauce-mgh" name="pizza-sauce" value="mgh" checked>
+                            <input type="radio" id="sauce-mgh" name="sauce" value="mgh" checked>
                             Margherita
                         </label>
                         <label for="sauce-afo">
-                            <input type="radio" id="sauce-afo" name="pizza-sauce" value="afo">
+                            <input type="radio" id="sauce-afo" name="sauce" value="afo">
                             Alfredo
                         </label>
                         <label for="sauce-pnk">
-                            <input type="radio" id="sauce-pnk" name="pizza-sauce" value="pnk">
+                            <input type="radio" id="sauce-pnk" name="sauce" value="pnk">
                             Pink: Marinara + Alfredo
                         </label>
                         <label for="sauce-bbq">
-                            <input type="radio" id="sauce-bbq" name="pizza-sauce" value="bbq">
+                            <input type="radio" id="sauce-bbq" name="sauce" value="bbq">
                             Barbecue
                         </label>
                     </div>
                 </div>
-                <div class="pizza-produce">
-                    <h3 class="button">Pizza Produce<span class="amount">0</span></h3>
-                    <div class="checkbox">
+                <div class="pizza">
+                    <h3 class="button" id="produce-btn">Pizza Produce<span class="amount">0</span></h3>
+                    <div class="checkbox hidden" id="pizza-produce">
                         <label for="produce-bp">
-                            <input type="checkbox" id="produce-bp" name="pizza-produce" value="bp">
+                            <input type="checkbox" id="produce-bp" name="produce" value="bp">
                             Bell peppers
                         </label>
                         <label for="produce-cp">
-                            <input type="checkbox" id="produce-cp" name="pizza-produce" value="cp">
+                            <input type="checkbox" id="produce-cp" name="produce" value="cp">
                             Chili peppers
                         </label>
                         <label for="produce-jlp">
-                            <input type="checkbox" id="produce-jlp" name="pizza-produce" value="jlp">
+                            <input type="checkbox" id="produce-jlp" name="produce" value="jlp">
                             Jalapeño peppers
                         </label>
                         <label for="produce-msh">
-                            <input type="checkbox" id="produce-msh" name="pizza-produce" value="msh">
+                            <input type="checkbox" id="produce-msh" name="produce" value="msh">
                             Mushrooms
                         </label>
                         <label for="produce-bo">
-                            <input type="checkbox" id="produce-bo" name="pizza-produce" value="bo">
+                            <input type="checkbox" id="produce-bo" name="produce" value="bo">
                             Black olives
                         </label>
                         <label for="produce-ro">
-                            <input type="checkbox" id="produce-ro" name="pizza-produce" value="ro">
+                            <input type="checkbox" id="produce-ro" name="produce" value="ro">
                             Red onions
                         </label>
                         <label for="produce-bsl">
-                            <input type="checkbox" id="produce-bsl" name="pizza-produce" value="bsl">
+                            <input type="checkbox" id="produce-bsl" name="produce" value="bsl">
                             Basil
                         </label>
                         <label for="produce-sp">
-                            <input type="checkbox" id="produce-sp" name="pizza-produce" value="sp">
+                            <input type="checkbox" id="produce-sp" name="produce" value="sp">
                             Spinach
                         </label>
                         <label for="produce-art">
-                            <input type="checkbox" id="produce-art" name="pizza-produce" value="art">
+                            <input type="checkbox" id="produce-art" name="produce" value="art">
                             Artichoke hearts
                         </label>
                         <label for="produce-glc">
-                            <input type="checkbox" id="produce-glc" name="pizza-produce" value="glc">
+                            <input type="checkbox" id="produce-glc" name="produce" value="glc">
                             Garlic
                         </label>
                         <label for="produce-go">
-                            <input type="checkbox" id="produce-go" name="pizza-produce" value="go">
+                            <input type="checkbox" id="produce-go" name="produce" value="go">
                             Green onions
                         </label>
                         <label for="produce-tto">
-                            <input type="checkbox" id="produce-tto" name="pizza-produce" value="tto">
+                            <input type="checkbox" id="produce-tto" name="produce" value="tto">
                             Tomatoes
                         </label>
                         <label for="produce-ba">
-                            <input type="checkbox" id="produce-ba" name="pizza-produce" value="ba">
+                            <input type="checkbox" id="produce-ba" name="produce" value="ba">
                             Baby arugula
                         </label>
                         <label for="produce-pck">
-                            <input type="checkbox" id="produce-pck" name="pizza-produce" value="pck">
+                            <input type="checkbox" id="produce-pck" name="produce" value="pck">
                             Pickles
                         </label>
                         <label for="produce-sc">
-                            <input type="checkbox" id="produce-sc" name="pizza-produce" value="sc">
+                            <input type="checkbox" id="produce-sc" name="produce" value="sc">
                             Sweet corn
                         </label>
                         <label for="produce-zuc">
-                            <input type="checkbox" id="produce-zuc" name="pizza-produce" value="zuc">
+                            <input type="checkbox" id="produce-zuc" name="produce" value="zuc">
                             Zucchini
                         </label>
                         <label for="produce-pin">
-                            <input type="checkbox" id="produce-pin" name="pizza-produce" value="pin">
+                            <input type="checkbox" id="produce-pin" name="produce" value="pin">
                             Pineapples
                         </label>
                     </div>
                 </div>
-                <div class="pizza-protein">
-                    <h3 class="button">Pizza Protein<span class="amount">0</span></h3>
-                    <div class="checkbox">
+                <div class="pizza">
+                    <h3 class="button" id="protein-btn">Pizza Protein<span class="amount">0</span></h3>
+                    <div class="checkbox hidden" id="pizza-protein">
                         <label for="meat-pep">
-                            <input type="checkbox" id="meat-pep" name="pizza-protein" value="pep">
+                            <input type="checkbox" id="meat-pep" name="protein" value="pep">
                             Pepperoni
                         </label>
                         <label for="meat-ssg">
-                            <input type="checkbox" id="meat-ssg" name="pizza-protein" value="ssg">
+                            <input type="checkbox" id="meat-ssg" name="protein" value="ssg">
                             Sausage
                         </label>
                         <label for="meat-eg">
-                            <input type="checkbox" id="meat-eg" name="pizza-protein" value="eg">
+                            <input type="checkbox" id="meat-eg" name="protein" value="eg">
                             Eggs
                         </label>
                         <label for="meat-bs">
-                            <input type="checkbox" id="meat-bs" name="pizza-protein" value="bs">
+                            <input type="checkbox" id="meat-bs" name="protein" value="bs">
                             Butter shrimp
                         </label>
                         <label for="meat-hm">
-                            <input type="checkbox" id="meat-hm" name="pizza-protein" value="hm">
+                            <input type="checkbox" id="meat-hm" name="protein" value="hm">
                             Ham
                         </label>
                     </div>
                 </div>
-                <div class="pizza-cheese">
-                    <h3 class="button">Pizza Cheese<span class="amount">0</span></h3>
-                    <div class="checkbox">
+                <div class="pizza">
+                    <h3 class="button" id="cheese-btn">Pizza Cheese<span class="amount">0</span></h3>
+                    <div class="checkbox hidden" id="pizza-cheese">
                         <label for="cheese-moz">
-                            <input type="checkbox" id="cheese-moz" name="pizza-cheese" value="moz">
+                            <input type="checkbox" id="cheese-moz" name="cheese" value="moz">
                             Mozzarella
                         </label>
                         <label for="cheese-prm">
-                            <input type="checkbox" id="cheese-prm" name="pizza-cheese" value="prm">
+                            <input type="checkbox" id="cheese-prm" name="cheese" value="prm">
                             Parmesan
                         </label>
                         <label for="cheese-rct">
-                            <input type="checkbox" id="cheese-rct" name="pizza-cheese" value="rct">
+                            <input type="checkbox" id="cheese-rct" name="cheese" value="rct">
                             Ricotta
                         </label>
                         <label for="cheese-ft">
-                            <input type="checkbox" id="cheese-ft" name="pizza-cheese" value="ft">
+                            <input type="checkbox" id="cheese-ft" name="cheese" value="ft">
                             Feta
                         </label>
                         <label for="cheese-gt">
-                            <input type="checkbox" id="cheese-gt" name="pizza-cheese" value="gt">
+                            <input type="checkbox" id="cheese-gt" name="cheese" value="gt">
                             Goat
                         </label>
                         <label for="cheese-rmo">
-                            <input type="checkbox" id="cheese-rmo" name="pizza-cheese" value="rmo">
+                            <input type="checkbox" id="cheese-rmo" name="cheese" value="rmo">
                             Romano
                         </label>
                         <label for="cheese-ago">
-                            <input type="checkbox" id="cheese-ago" name="pizza-cheese" value="ago">
+                            <input type="checkbox" id="cheese-ago" name="cheese" value="ago">
                             Asiago
                         </label>
                         <label for="cheese-bl">
-                            <input type="checkbox" id="cheese-bl" name="pizza-cheese" value="bl">
+                            <input type="checkbox" id="cheese-bl" name="cheese" value="bl">
                             Blue
                         </label>
                         <label for="cheese-sc">
-                            <input type="checkbox" id="cheese-sc" name="pizza-cheese" value="sc">
+                            <input type="checkbox" id="cheese-sc" name="cheese" value="sc">
                             Sharp cheddar
                         </label>
                     </div>
@@ -246,41 +248,7 @@
                     <input class="button" type="reset" id="reset-pizza-details" value="Reset">
                 </div>
             </form>
-            <form class="pizza-list">
-                <div class="list"></div>
-                <div class="form-mng">
-                    <input type="submit" id="submit-pizza-list" value="Place Order">
-                    <input type="reset" id="reset-pizza-list" value="Clear Order">
-                </div>
-            </form>
-        </section>
-        <section class="receipt hidden">
-            <h2>Receipt</h2>
-            <div class="list"></div>
-            <form class="customer">
-                <div class="customer-name">
-                    <label for="customer-name">
-                        Name on Order:
-                        <input type="text" id="customer-name" pattern="/\w+/i" required>
-                    </label>
-                </div>
-                <div class="customer-addr">
-                    <label for="customer-streetaddr">
-                        <input type="text" id="customer-streetaddr" pattern="/\d+ (\w+)+, \w+ \d+/i" placeholder="4200 Martin Luther King Blvd Houston, TX 77204" required>
-                    </label>
-                </div>
-                <div class="form-mng">
-                    <input type="submit" id="submit-customer" value="Pay">
-                    <input type="reset" id="reset-customer" value="Cancel">
-                </div>
-            </form>
-        </section>
-        <section class="confirmation hidden">
-            <h2>Confirmation</h2>
-            <div class="status"></div>
-            <div class="confirm">
-                <button class="button">Order Received</button>
-            </div>
+            <div class="receipt"></div>
         </section>
     </main>
 </body>

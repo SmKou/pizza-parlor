@@ -55,63 +55,83 @@ const PIZZA_TOPPINGS = {
     preset: {
         'mgh': {
             fullname: 'Margherita',
-            sauce: 'mgh',
-            produce: ['bsl'],
-            cheese: 'moz'
+            toppings: {
+                sauce: ['mgh'],
+                produce: ['bsl'],
+                cheese: ['moz']
+            }
         },
         'sup': {
             fullname: 'Supreme',
-            sauce: 'mgh',
-            produce: ['bp', 'bo', 'ro', 'msh'],
-            cheese: ['moz'],
-            protein: ['pep', 'ssg']
+            toppings: {
+                sauce: 'mgh',
+                produce: ['bp', 'bo', 'ro', 'msh'],
+                cheese: ['moz'],
+                protein: ['pep', 'ssg']
+            }
         },
         'ch': {
             fullname: 'Five Cheese',
-            cheese: ['moz', 'prm', 'rmo', 'ago', 'ft']
+            toppings: {
+                cheese: ['moz', 'prm', 'rmo', 'ago', 'ft']
+            }
         },
         'sa': {
             fullname: 'Spinach and Artichoke',
-            produce: ['art', 'sp', 'glc'],
-            cheese: ['moz', 'prm']
+            toppings: {
+                produce: ['art', 'sp', 'glc'],
+                cheese: ['moz', 'prm']
+            }
         },
         'wt': {
             fullname: 'White',
-            sauce: 'afo',
-            cheese: ['moz', 'prm', 'rct'],
-            produce: ['glc']
+            toppings: {
+                sauce: 'afo',
+                cheese: ['moz', 'prm', 'rct'],
+                produce: ['glc']
+            }
         },
         'grk': {
             fullname: 'Greek',
-            sauce: 'mgh',
-            cheese: ['ft'],
-            produce: ['sp', 'bo', 'tto', 'ro']
+            toppings: {
+                sauce: 'mgh',
+                cheese: ['ft'],
+                produce: ['sp', 'bo', 'tto', 'ro']
+            }
         },
         'bf': {
             fullname: 'Breakfast',
-            protein: ['eg'],
-            sauce: 'mgh',
-            produce: ['bp', 'ro', 'tto'],
-            cheese: ['moz']
+            toppings: {
+                sauce: 'mgh',
+                protein: ['eg'],
+                produce: ['bp', 'ro', 'tto'],
+                cheese: ['moz']
+            }
         },
         'cap': {
             fullname: 'Caprese',
-            sauce: 'mgh',
-            produce: ['bsl', 'tto'],
-            cheese: ['moz']
+            toppings: {
+                sauce: 'mgh',
+                produce: ['bsl', 'tto'],
+                cheese: ['moz']
+            }
         },
         'hwn': {
             fullname: 'Hawaiian',
-            sauce: 'bbq',
-            produce: ['pin'],
-            protein: ['hm'],
-            cheese: ['moz']
+            toppings: {
+                sauce: 'bbq',
+                produce: ['pin'],
+                protein: ['hm'],
+                cheese: ['moz']
+            }
         },
         'jlp': {
             fullname: 'Jalapeño',
-            sauce: 'bbq',
-            produce: ['zuc', 'sc', 'ro', 'jlp'],
-            cheese: ['moz']
+            toppings: {
+                sauce: 'bbq',
+                produce: ['zuc', 'sc', 'ro', 'jlp'],
+                cheese: ['moz']
+            }
         }
     }
 }
@@ -136,12 +156,23 @@ class Pizza {
     constructor() {
         this.size = 'sm';
         this.price = 0;
+        this.preset = '';
         this.toppings = {
             sauce: 'mgh',
             produce: [],
             protein: [],
             cheese: []
         };
+    }
+
+    resetToppings() {
+        this.toppings = {
+            sauce: 'mgh',
+            produce: [],
+            protein: [],
+            cheese: []
+        };
+        this.price = 0;
     }
     
     setSize(s) {
@@ -152,6 +183,21 @@ class Pizza {
     setPrice(p) {
         if (p >= 0)
             this.price = p;
+    }
+
+    setPreset(pre) {
+        if (Objects.keys(PIZZA_TOPPINGS.preset).includes(pre)) {
+            this.preset = pre;
+            this.resetToppings();
+            const toppings = PIZZA_TOPPINGS.preset[pre].toppings;
+            for (const type of Object.keys(toppings)) {
+                if (type === 'sauce')
+                    this.addTopping('sauce', toppings[type]);
+                else
+                    for (const itm of toppings[type])
+                        this.addTopping(type, itm);
+            }
+        }
     }
 
     addTopping(type, item) {
@@ -189,5 +235,3 @@ function calculateCost(pizza) {
     pizza.setPrice(total);
     return total;
 }
- 
-let pizza = new Pizza();
