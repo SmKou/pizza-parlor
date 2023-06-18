@@ -1,5 +1,6 @@
 function Receipt() {
     this.pizzas = [];
+    this.current = 0;
     this.total = 0;
     this.customer = '';
     this.address = '';

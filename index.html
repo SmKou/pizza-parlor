@@ -20,7 +20,7 @@
                 <h1>Pizza Parlor</h1>
                 <p></p>
             </header>
-            <form>
+            <form id="pizza" method="POST">
                 <div class="pizza">
                     <h3 class="button" id="size-btn">Pizza Size</h3>
                     <div class="radio" id="pizza-size">
@@ -244,11 +244,14 @@
                     </div>
                 </div>
                 <div class="form-mng">
-                    <input class="button button-primary" type="submit" id="submit-pizza-details" value="Submit">
-                    <input class="button" type="reset" id="reset-pizza-details" value="Reset">
+                    <input class="button button-primary" type="submit" id="submit-pizza" value="Submit">
+                    <input class="button" type="reset" id="reset-pizza" value="Reset">
                 </div>
             </form>
-            <div class="receipt"></div>
+            <div class="receipt">
+                <ul class="list"></ul>
+                <div><span>Total</span><span class="total"></span></div>
+            </div>
         </section>
     </main>
 </body>

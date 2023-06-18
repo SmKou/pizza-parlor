@@ -186,7 +186,7 @@ class Pizza {
     }
 
     setPreset(pre) {
-        if (Objects.keys(PIZZA_TOPPINGS.preset).includes(pre)) {
+        if (Object.keys(PIZZA_TOPPINGS.preset).includes(pre)) {
             this.preset = pre;
             this.resetToppings();
             const toppings = PIZZA_TOPPINGS.preset[pre].toppings;
@@ -223,7 +223,6 @@ function calculateCost(pizza) {
     if (!pizza.size)
         return 0;
     const size = pizza.size;
-
     let total = 0;
     total += PIZZA_TOPPINGS.size[size].price;
     for (const topping of Object.keys(pizza.toppings)) {
