@@ -22,15 +22,6 @@ class Pizza {
             topping.push(item);
     }
 
-    resetToppings() {
-        this.toppings = {
-            sauce: ['mgh'],
-            produce: [],
-            protein: [],
-            cheese: ['moz']
-        };
-    }
-
     clearTopping(type) {
         switch (type) {
             case 'size':

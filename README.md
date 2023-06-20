@@ -4,7 +4,7 @@ By: [Stella Marie](http://smkou.com)
 
 App for ordering a pizza.
 
-View on [Github Pages](https://smkou.github.io/pizza-parlor/)
+View on [Github Pages](https://smkou.github.io/) - not available yet
 
 ## Technologies Used
 
@@ -61,6 +61,10 @@ git remote -v
 Demo: [Github Pages](https://smkou.github.io/pizza-parlor/)
 
 ## Known Bugs
+
+- Order summary not finished
+- Customer information not finished
+- Receipt object in testing
 
 Please report any issues in viewing the site.
 
