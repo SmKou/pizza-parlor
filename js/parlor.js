@@ -1,72 +1,57 @@
 function Receipt() {
-    this.pizzas = [];
-    this.current = 0;
+    this.pizzas = {};
+    this.currPizzaId = 0;
     this.total = 0;
-    this.customer = '';
-    this.address = '';
-    this.status = false;
+    this.customer = new Customer();
 }
 
 Receipt.prototype.addPizza = function (pizza) {
-    this.total += pizza.price;
-    this.pizzas = [...this.pizzas, pizza];
+    const id = this.currPizzaId;
+    const price = this.calculateCost(pizza);
+    const qty = 1;
+    this.total += price;
+    this.pizzas[id] = { pizza, price, qty };
+    this.currPizzaId++;
+}
+
+Receipt.prototype.addQty = function (id, qty) {
+    this.pizzas[id].qty += qty;
 }
 
 Receipt.prototype.removePizza = function (id) {
-    if (id > -1 && id < this.pizzas.length)
+    if (this.pizzas.hasOwnProperty(id)) {
+        this.total -= this.pizzas[id].price;
         delete this.pizzas[id];
+        return true;
+    }
+    return false;
 }
 
-Receipt.prototype.addCustomer = function (name) {
-    this.customer = name;
+Receipt.prototype.removeQty = function (id, qty) {
+    if (this.pizzas.hasOwnProperty(id))
+        if (this.pizzas[id].qty - qty <= 0)
+            this.removePizza(id);
+        else
+            this.pizzas[id].qty -= qty;
 }
 
-Receipt.prototype.addAddress = function (addr) {
+Receipt.prototype.addCustomer = function (name, addr) {
+    this.customer = new Customer(name, addr);
+}
+
+Receipt.prototype.calculateCost = function (pizza) {
+    const size = pizza.size;
+    let total = 0;
+    total += PIZZA_PRICES.size[size];
+    for (const topping of Object.keys(pizza.toppings)) {
+        const qty = pizza.toppings[topping].length - PIZZA_PRICES[topping].numFreeItms;
+        if (qty > 0)
+            total += qty * PIZZA_PRICES[topping].price;
+    }
+    return total;
+}
+
+function Customer(name, addr) {
+    this.name = name;
     this.address = addr;
 }
-
-Receipt.prototype.received = function () {
-    this.status = true;
-}
-
-const receipt = new Receipt();
-
-/* NOT TESTED
-<!--
-    <form class="pizza-list">
-        <div class="list"></div>
-        <div class="form-mng">
-            <input type="submit" id="submit-pizza-list" value="Place Order">
-            <input type="reset" id="reset-pizza-list" value="Clear Order">
-        </div>
-    </form>
-        <section class="receipt hidden">
-            <h2>Receipt</h2>
-            <div class="list"></div>
-            <form class="customer">
-                <div class="customer-name">
-                    <label for="customer-name">
-                        Name on Order:
-                        <input type="text" id="customer-name" pattern="/\w+/i" required>
-                    </label>
-                </div>
-                <div class="customer-addr">
-                    <label for="customer-streetaddr">
-                        <input type="text" id="customer-streetaddr" pattern="/\d+ (\w+)+, \w+ \d+/i" placeholder="4200 Martin Luther King Blvd Houston, TX 77204" required>
-                    </label>
-                </div>
-                <div class="form-mng">
-                    <input type="submit" id="submit-customer" value="Pay">
-                    <input type="reset" id="reset-customer" value="Cancel">
-                </div>
-            </form>
-        </section>
-        <section class="confirmation hidden">
-            <h2>Confirmation</h2>
-            <div class="status"></div>
-            <div class="confirm">
-                <button class="button">Order Received</button>
-            </div>
-        </section>
-    -->
-*/

@@ -8,250 +8,320 @@
         @import url('https://fonts.googleapis.com/css2?family=Anonymous+Pro:wght@400;700&family=Raleway:wght@100;400;700&family=Righteous&display=swap');
     </style>
     <link rel="stylesheet" href="css/styles.css">
+    <script src="js/constants.js"></script>
     <script src="js/pizza.js"></script>
     <script src="js/parlor.js"></script>
     <script src="js/scripts.js"></script>
     <script src="js/tests.js"></script>
 </head>
 <body>
+    <header>
+        <a class="button button-primary nav-btn" id="nav-preset" href="#pizza-preset">Preset</a>
+        <a class="button nav-btn" id="nav-size" href="#pizza-size">Size</a>
+        <a class="button nav-btn" id="nav-sauce" href="#pizza-sauce">Sauce</a>
+        <a class="button nav-btn" id="nav-cheese" href="#pizza-cheese">Cheese</a>
+        <a class="button nav-btn" id="nav-produce" href="#pizza-produce">Veggies</a>
+        <a class="button nav-btn" id="nav-protein" href="#pizza-protein">Protein</a>
+    </header>
     <main>
-        <section class="pizza-order">
-            <header>
-                <h1>Pizza Parlor</h1>
-                <p></p>
-            </header>
-            <form id="pizza" method="POST">
-                <div class="pizza">
-                    <h3 class="button" id="size-btn">Pizza Size</h3>
-                    <div class="radio" id="pizza-size">
-                        <label for="size-sm">
-                            <input type="radio" id="size-sm" name="size" value="sm" checked>
-                            Small
-                        </label>
-                        <label for="size-mm">
-                            <input type="radio" id="size-mm" name="size" value="mm">
-                            Medium
-                        </label>
-                        <label for="size-lg">
-                            <input type="radio" id="size-lg" name="size" value="lg">
-                            Large
-                        </label>
+        <section id="pizza-preset">
+            <form method="post" id="form-preset">
+                <h3>Presets</h3>
+                <p>Please note that if you change the preset after having already made some selections, the selections that deviate from the preset will be lost or overwritten. This includes when resetting.</p>
+                <div class="options">
+                    <label for="preset-cus">
+                        <input type="radio" id="preset-cus" name="preset" value="cus" checked>
+                        Custom pizza
+                    </label>
+                    <label for="preset-mgh">
+                        <input type="radio" id="preset-mgh" name="preset" value="mgh">
+                        Margherita
+                    </label>
+                    <label for="preset-sup">
+                        <input type="radio" id="preset-sup" name="preset" value="sup">
+                        Supreme
+                    </label>
+                    <label for="preset-ch">
+                        <input type="radio" id="preset-ch" name="preset" value="ch">
+                        Five Cheese
+                    </label>
+                    <label for="preset-sa">
+                        <input type="radio" id="preset-sa" name="preset" value="sa">
+                        Spinach and Artichoke
+                    </label>
+                    <label for="preset-wt">
+                        <input type="radio" id="preset-wt" name="preset" value="wt">
+                        Blanca
+                    </label>
+                    <label for="preset-grk">
+                        <input type="radio" id="preset-grk" name="preset" value="grk">
+                        Greek
+                    </label>
+                    <label for="preset-bf">
+                        <input type="radio" id="preset-bf" name="preset" value="bf">
+                        Breakfast
+                    </label>
+                    <label for="preset-cap">
+                        <input type="radio" id="preset-cap" name="preset" value="cap">
+                        Caprese
+                    </label>
+                    <label for="preset-hwn">
+                        <input type="radio" id="preset-hwn" name="preset" value="hwn">
+                        Hawaiian
+                    </label>
+                    <label for="preset-jlp">
+                        <input type="radio" id="preset-jlp" name="preset" value="jlp">
+                        Jalapeño
+                    </label>
+                </div>
+                <div class="form-mng">
+                    <input type="submit" class="button-primary" id="submit-preset" value="Choose preset">
+                    <input type="reset" id="reset-preset" value="Reset">
+                </div>
+            </form>
+        </section>
+        <section id="pizza-size">
+            <form method="post" id="form-size">
+                <h3>Size</h3>
+                <div class="options">
+                    <label for="size-sm">
+                        <input type="radio" id="size-sm" name="size" value="sm" checked>
+                        Small: 10" diameter, $8
+                    </label>
+                    <label for="size-mm">
+                        <input type="radio" id="size-mm" name="size" value="mm">
+                        Medium: 14" diameter, $12
+                    </label>
+                    <label for="size-lg">
+                        <input type="radio" id="size-lg" name="size" value="lg">
+                        Large: 20" diameter, $16
+                    </label>
+                </div>
+                <div class="form-mng">
+                    <input type="submit" class="button-primary" id="submit-size" value="Choose Size">
+                    <input type="reset" id="reset-size" value="Reset">
+                </div>
+            </form>
+        </section>
+        <section id="pizza-sauce">
+            <form method="post" id="form-sauce">
+                <h3>Sauce</h3>
+                <p>One sauce is free, then it's $0.5 for each additional sauce.</p>
+                <div class="options">
+                    <label for="sauce-mgh">
+                        <input type="checkbox" id="sauce-mgh" name="sauce" value="mgh" checked>
+                        Margherita sauce
+                    </label>
+                    <label for="sauce-afo">
+                        <input type="checkbox" id="sauce-afo" name="sauce" value="afo">
+                        Alfredo sauce
+                    </label>
+                    <label for="sauce-pnk">
+                        <input type="checkbox" id="sauce-pnk" name="sauce" value="pnk">
+                        Pink sauce
+                    </label>
+                    <label for="sauce-bbq">
+                        <input type="checkbox" id="sauce-bbq" name="sauce" value="bbq">
+                        Barbecue sauce
+                    </label>
+                </div>
+                <div class="form-mng">
+                    <input class="button-primary" type="submit" id="submit-sauce" value="Choose sauce">
+                    <input type="reset" id="reset-sauce" value="Reset">
+                </div>
+            </form>
+        </section>
+        <section id="pizza-cheese">
+            <form method="post" id="form-cheese">
+                <h3>Cheese</h3>
+                <p>One cheese is free, then it's $0.75 for each additional cheese.</p>
+                <div class="options">
+                    <label for="cheese-moz">
+                        <input type="checkbox" id="cheese-moz" name="cheese" value="moz">
+                        Mozzarella
+                    </label>
+                    <label for="cheese-prm">
+                        <input type="checkbox" id="cheese-prm" name="cheese" value="prm">
+                        Parmesan
+                    </label>
+                    <label for="cheese-rct">
+                        <input type="checkbox" id="cheese-rct" name="cheese" value="rct">
+                        Ricotta
+                    </label>
+                    <label for="cheese-ft">
+                        <input type="checkbox" id="cheese-ft" name="cheese" value="ft">
+                        Feta
+                    </label>
+                    <label for="cheese-gt">
+                        <input type="checkbox" id="cheese-gt" name="cheese" value="gt">
+                        Goat
+                    </label>
+                    <label for="cheese-rmo">
+                        <input type="checkbox" id="cheese-rmo" name="cheese" value="rmo">
+                        Romano
+                    </label>
+                    <label for="cheese-ago">
+                        <input type="checkbox" id="cheese-ago" name="cheese" value="ago">
+                        Asiago
+                    </label>
+                    <label for="cheese-bl">
+                        <input type="checkbox" id="cheese-bl" name="cheese" value="bl">
+                        Blue
+                    </label>
+                    <label for="cheese-sc">
+                        <input type="checkbox" id="cheese-sc" name="cheese" value="sc">
+                        Sharp cheddar
+                    </label>
+                </div>
+                <div class="form-mng">
+                    <input type="submit" class="button-primary" id="submit-cheese" value="Choose cheese">
+                    <input type="reset" id="reset-cheese" value="Clear cheese">
+                </div>
+            </form>
+        </section>
+        <section id="pizza-produce">
+            <form method="post" id="form-produce">
+                <h3>Veggies</h3>
+                <p>Veggies consist of fruits and vegetable toppings. Three are free, then it's $0.5 for each additional veggie.</p>
+                <div class="options">
+                    <label for="produce-bp">
+                        <input type="checkbox" id="produce-bp" name="produce" value="bp">
+                        Bell peppers
+                    </label>
+                    <label for="produce-cp">
+                        <input type="checkbox" id="produce-cp" name="produce" value="cp">
+                        Chili peppers
+                    </label>
+                    <label for="produce-jlp">
+                        <input type="checkbox" id="produce-jlp" name="produce" value="jlp">
+                        Jalapeño peppers
+                    </label>
+                    <label for="produce-msh">
+                        <input type="checkbox" id="produce-msh" name="produce" value="msh">
+                        Mushrooms
+                    </label>
+                    <label for="produce-bo">
+                        <input type="checkbox" id="produce-bo" name="produce" value="bo">
+                        Black olives
+                    </label>
+                    <label for="produce-ro">
+                        <input type="checkbox" id="produce-ro" name="produce" value="ro">
+                        Red onions
+                    </label>
+                    <label for="produce-bsl">
+                        <input type="checkbox" id="produce-bsl" name="produce" value="bsl">
+                        Basil
+                    </label>
+                    <label for="produce-sp">
+                        <input type="checkbox" id="produce-sp" name="produce" value="sp">
+                        Spinach
+                    </label>
+                    <label for="produce-art">
+                        <input type="checkbox" id="produce-art" name="produce" value="art">
+                        Artichoke hearts
+                    </label>
+                    <label for="produce-glc">
+                        <input type="checkbox" id="produce-glc" name="produce" value="glc">
+                        Garlic
+                    </label>
+                    <label for="produce-go">
+                        <input type="checkbox" id="produce-go" name="produce" value="go">
+                        Green onions
+                    </label>
+                    <label for="produce-tto">
+                        <input type="checkbox" id="produce-tto" name="produce" value="tto">
+                        Tomatoes
+                    </label>
+                    <label for="produce-ba">
+                        <input type="checkbox" id="produce-ba" name="produce" value="ba">
+                        Baby arugula
+                    </label>
+                    <label for="produce-pck">
+                        <input type="checkbox" id="produce-pck" name="produce" value="pck">
+                        Pickles
+                    </label>
+                    <label for="produce-sc">
+                        <input type="checkbox" id="produce-sc" name="produce" value="sc">
+                        Sweet corn
+                    </label>
+                    <label for="produce-zuc">
+                        <input type="checkbox" id="produce-zuc" name="produce" value="zuc">
+                        Zucchini
+                    </label>
+                    <label for="produce-pin">
+                        <input type="checkbox" id="produce-pin" name="produce" value="pin">
+                        Pineapples
+                    </label>
+                </div>
+                <div class="form-mng">
+                    <input type="submit" class="button-primary" id="submit-produce" value="Choose veggies">
+                    <input type="reset" id="reset-produce" value="Clear veggies">
+                </div>
+            </form>
+        </section>
+        <section id="pizza-protein">
+            <form method="post" id="form-protein">
+                <h3>Protein</h3>
+                <p>Protein consists of meat and eggs, not yet including fish or tofu. One protein is free, then it's $1.00 for each additional protein.</p>
+                <div class="options">
+                    <label for="meat-pep">
+                        <input type="checkbox" id="meat-pep" name="protein" value="pep">
+                        Pepperoni
+                    </label>
+                    <label for="meat-ssg">
+                        <input type="checkbox" id="meat-ssg" name="protein" value="ssg">
+                        Sausage
+                    </label>
+                    <label for="meat-eg">
+                        <input type="checkbox" id="meat-eg" name="protein" value="eg">
+                        Eggs
+                    </label>
+                    <label for="meat-bs">
+                        <input type="checkbox" id="meat-bs" name="protein" value="bs">
+                        Butter shrimp
+                    </label>
+                    <label for="meat-hm">
+                        <input type="checkbox" id="meat-hm" name="protein" value="hm">
+                        Ham
+                    </label>
+                </div>
+                <div class="form-mng">
+                    <input type="submit" class="button-primary" id="submit-protein" value="Choose protein">
+                    <input type="reset" id="reset-protein" value="Clear protein">
+                </div>
+            </form>
+        </section>
+        <section id="pizza-order">
+            <form method="post" id="form-order">
+                <h3>Your Order</h3>
+                <div class="order">
+                    <div class="total">
+                        <span>Total:</span>
+                        <span class="total-sum"></span>
                     </div>
                 </div>
                 <div class="pizza">
-                    <h3 class="button" id="preset-btn">Presets</h3>
-                    <div class="radio hidden" id="pizza-preset">
-                        <label for="preset-mgh">
-                            <input type="radio" id="preset-mgh" name="preset" value="mgh">
-                            Margherita
+                    <div class="pizza-mng">
+                        <label for="pizza-qty">
+                            <input class="button" type="number" min="1" max="20" placeholder="1">
                         </label>
-                        <label for="preset-sup">
-                            <input type="radio" id="preset-sup" name="preset" value="sup">
-                            Supreme
-                        </label>
-                        <label for="preset-ch">
-                            <input type="radio" id="preset-ch" name="preset" value="ch">
-                            Five Cheese
-                        </label>
-                        <label for="preset-sa">
-                            <input type="radio" id="preset-sa" name="preset" value="sa">
-                            Spinach and Artichoke
-                        </label>
-                        <label for="preset-wt">
-                            <input type="radio" id="preset-wt" name="preset" value="wt">
-                            Blanca
-                        </label>
-                        <label for="preset-grk">
-                            <input type="radio" id="preset-grk" name="preset" value="grk">
-                            Greek
-                        </label>
-                        <label for="preset-bf">
-                            <input type="radio" id="preset-bf" name="preset" value="bf">
-                            Breakfast
-                        </label>
-                        <label for="preset-cap">
-                            <input type="radio" id="preset-cap" name="preset" value="cap">
-                            Caprese
-                        </label>
-                        <label for="preset-hwn">
-                            <input type="radio" id="preset-hwn" name="preset" value="hwn">
-                            Hawaiian
-                        </label>
-                        <label for="preset-jlp">
-                            <input type="radio" id="preset-jlp" name="preset" value="jlp">
-                            Jalapeño
-                        </label>
-                    </div>
-                </div>
-                <div class="pizza">
-                    <h3 class="button" id="sauce-btn">Pizza Sauce</h3>
-                    <div class="radio hidden" id="pizza-sauce">
-                        <label for="sauce-mgh">
-                            <input type="radio" id="sauce-mgh" name="sauce" value="mgh" checked>
-                            Margherita
-                        </label>
-                        <label for="sauce-afo">
-                            <input type="radio" id="sauce-afo" name="sauce" value="afo">
-                            Alfredo
-                        </label>
-                        <label for="sauce-pnk">
-                            <input type="radio" id="sauce-pnk" name="sauce" value="pnk">
-                            Pink: Marinara + Alfredo
-                        </label>
-                        <label for="sauce-bbq">
-                            <input type="radio" id="sauce-bbq" name="sauce" value="bbq">
-                            Barbecue
-                        </label>
-                    </div>
-                </div>
-                <div class="pizza">
-                    <h3 class="button" id="produce-btn">Pizza Produce<span class="amount">0</span></h3>
-                    <div class="checkbox hidden" id="pizza-produce">
-                        <label for="produce-bp">
-                            <input type="checkbox" id="produce-bp" name="produce" value="bp">
-                            Bell peppers
-                        </label>
-                        <label for="produce-cp">
-                            <input type="checkbox" id="produce-cp" name="produce" value="cp">
-                            Chili peppers
-                        </label>
-                        <label for="produce-jlp">
-                            <input type="checkbox" id="produce-jlp" name="produce" value="jlp">
-                            Jalapeño peppers
-                        </label>
-                        <label for="produce-msh">
-                            <input type="checkbox" id="produce-msh" name="produce" value="msh">
-                            Mushrooms
-                        </label>
-                        <label for="produce-bo">
-                            <input type="checkbox" id="produce-bo" name="produce" value="bo">
-                            Black olives
-                        </label>
-                        <label for="produce-ro">
-                            <input type="checkbox" id="produce-ro" name="produce" value="ro">
-                            Red onions
-                        </label>
-                        <label for="produce-bsl">
-                            <input type="checkbox" id="produce-bsl" name="produce" value="bsl">
-                            Basil
-                        </label>
-                        <label for="produce-sp">
-                            <input type="checkbox" id="produce-sp" name="produce" value="sp">
-                            Spinach
-                        </label>
-                        <label for="produce-art">
-                            <input type="checkbox" id="produce-art" name="produce" value="art">
-                            Artichoke hearts
-                        </label>
-                        <label for="produce-glc">
-                            <input type="checkbox" id="produce-glc" name="produce" value="glc">
-                            Garlic
-                        </label>
-                        <label for="produce-go">
-                            <input type="checkbox" id="produce-go" name="produce" value="go">
-                            Green onions
-                        </label>
-                        <label for="produce-tto">
-                            <input type="checkbox" id="produce-tto" name="produce" value="tto">
-                            Tomatoes
-                        </label>
-                        <label for="produce-ba">
-                            <input type="checkbox" id="produce-ba" name="produce" value="ba">
-                            Baby arugula
-                        </label>
-                        <label for="produce-pck">
-                            <input type="checkbox" id="produce-pck" name="produce" value="pck">
-                            Pickles
-                        </label>
-                        <label for="produce-sc">
-                            <input type="checkbox" id="produce-sc" name="produce" value="sc">
-                            Sweet corn
-                        </label>
-                        <label for="produce-zuc">
-                            <input type="checkbox" id="produce-zuc" name="produce" value="zuc">
-                            Zucchini
-                        </label>
-                        <label for="produce-pin">
-                            <input type="checkbox" id="produce-pin" name="produce" value="pin">
-                            Pineapples
-                        </label>
-                    </div>
-                </div>
-                <div class="pizza">
-                    <h3 class="button" id="protein-btn">Pizza Protein<span class="amount">0</span></h3>
-                    <div class="checkbox hidden" id="pizza-protein">
-                        <label for="meat-pep">
-                            <input type="checkbox" id="meat-pep" name="protein" value="pep">
-                            Pepperoni
-                        </label>
-                        <label for="meat-ssg">
-                            <input type="checkbox" id="meat-ssg" name="protein" value="ssg">
-                            Sausage
-                        </label>
-                        <label for="meat-eg">
-                            <input type="checkbox" id="meat-eg" name="protein" value="eg">
-                            Eggs
-                        </label>
-                        <label for="meat-bs">
-                            <input type="checkbox" id="meat-bs" name="protein" value="bs">
-                            Butter shrimp
-                        </label>
-                        <label for="meat-hm">
-                            <input type="checkbox" id="meat-hm" name="protein" value="hm">
-                            Ham
-                        </label>
-                    </div>
-                </div>
-                <div class="pizza">
-                    <h3 class="button" id="cheese-btn">Pizza Cheese<span class="amount">0</span></h3>
-                    <div class="checkbox hidden" id="pizza-cheese">
-                        <label for="cheese-moz">
-                            <input type="checkbox" id="cheese-moz" name="cheese" value="moz">
-                            Mozzarella
-                        </label>
-                        <label for="cheese-prm">
-                            <input type="checkbox" id="cheese-prm" name="cheese" value="prm">
-                            Parmesan
-                        </label>
-                        <label for="cheese-rct">
-                            <input type="checkbox" id="cheese-rct" name="cheese" value="rct">
-                            Ricotta
-                        </label>
-                        <label for="cheese-ft">
-                            <input type="checkbox" id="cheese-ft" name="cheese" value="ft">
-                            Feta
-                        </label>
-                        <label for="cheese-gt">
-                            <input type="checkbox" id="cheese-gt" name="cheese" value="gt">
-                            Goat
-                        </label>
-                        <label for="cheese-rmo">
-                            <input type="checkbox" id="cheese-rmo" name="cheese" value="rmo">
-                            Romano
-                        </label>
-                        <label for="cheese-ago">
-                            <input type="checkbox" id="cheese-ago" name="cheese" value="ago">
-                            Asiago
-                        </label>
-                        <label for="cheese-bl">
-                            <input type="checkbox" id="cheese-bl" name="cheese" value="bl">
-                            Blue
-                        </label>
-                        <label for="cheese-sc">
-                            <input type="checkbox" id="cheese-sc" name="cheese" value="sc">
-                            Sharp cheddar
-                        </label>
+                        <button id="add-qty">Add</button>
+                        <button id="remove-qty">Remove</button>
                     </div>
                 </div>
                 <div class="form-mng">
-                    <input class="button button-primary" type="submit" id="submit-pizza" value="Submit">
-                    <input class="button" type="reset" id="reset-pizza" value="Reset">
+                    <button id="add-pizza">Add another pizza</button>
+                    <input type="submit" id="submit-order" value="Place order">
+                    <input type="reset" id="reset-order" value="Clear order">
                 </div>
             </form>
-            <div class="receipt">
-                <ul class="list"></ul>
-                <div><span>Total</span><span class="total"></span></div>
-            </div>
+        </section>
+        <section id="pizza-customer">
+            <form method="post" id="form-customer">
+                <h3>Customer Information</h3>
+                <div class="options"></div>
+                <div class="form-mng"></div>
+            </form>
         </section>
     </main>
 </body>

@@ -1,178 +1,14 @@
-const PIZZA_TOPPINGS = {
-    type: {
-        produce: { free: 3, price: 0.5 },
-        protein: { free: 1, price: 1 },
-        cheese: { free: 1, price: 0.75 }
-    },
-    size: {
-        'sm': { fullname: 'Small', price: 8, radius: 10 },
-        'mm': { fullname: 'Medium', price: 12.5, radius: 14 },
-        'lg': { fullname: 'Large', price: 17, radius: 20 }
-    },
-    sauce: {
-        'mgh': 'Margherita',
-        'afo': 'Alfredo',
-        'pnk': 'Pink',
-        'bbq': 'Barbecue'
-    },
-    produce: {
-        'bp': 'Bell pepper',
-        'cp': 'Chili pepper',
-        'jlp': 'Jalapeño peppers',
-        'msh': 'Mushrooms',
-        'bo': 'Black olives',
-        'ro': 'Red onions',
-        'bsl': 'Basil',
-        'sp': 'Spinach',
-        'art': 'Artichoke hearts',
-        'glc': 'Garlic',
-        'go': 'Green onions',
-        'tto': 'Tomatoes',
-        'ba': 'Baby arugula',
-        'pck': 'Pickles',
-        'sc': 'Sweet corn',
-        'zuc': 'Zucchini',
-        'pin': 'Pineapples'
-    },
-    protein: {
-        'pep': 'Pepperoni',
-        'ssg': 'Sausage',
-        'eg': 'Eggs',
-        'bs': 'Butter shrimp',
-        'hm': 'Ham'
-    },
-    cheese: {
-        'moz': 'Mozzarella',
-        'prm': 'Parmesan',
-        'rct': 'Ricotta',
-        'ft': 'Feta',
-        'gt': 'Goat',
-        'rmo': 'Romano',
-        'ago': 'Asiago',
-        'bl': 'Blue',
-        'sc': 'Sharp cheddar'
-    },
-    preset: {
-        'mgh': {
-            fullname: 'Margherita',
-            toppings: {
-                sauce: ['mgh'],
-                produce: ['bsl'],
-                cheese: ['moz']
-            }
-        },
-        'sup': {
-            fullname: 'Supreme',
-            toppings: {
-                sauce: 'mgh',
-                produce: ['bp', 'bo', 'ro', 'msh'],
-                cheese: ['moz'],
-                protein: ['pep', 'ssg']
-            }
-        },
-        'ch': {
-            fullname: 'Five Cheese',
-            toppings: {
-                cheese: ['moz', 'prm', 'rmo', 'ago', 'ft']
-            }
-        },
-        'sa': {
-            fullname: 'Spinach and Artichoke',
-            toppings: {
-                produce: ['art', 'sp', 'glc'],
-                cheese: ['moz', 'prm']
-            }
-        },
-        'wt': {
-            fullname: 'White',
-            toppings: {
-                sauce: 'afo',
-                cheese: ['moz', 'prm', 'rct'],
-                produce: ['glc']
-            }
-        },
-        'grk': {
-            fullname: 'Greek',
-            toppings: {
-                sauce: 'mgh',
-                cheese: ['ft'],
-                produce: ['sp', 'bo', 'tto', 'ro']
-            }
-        },
-        'bf': {
-            fullname: 'Breakfast',
-            toppings: {
-                sauce: 'mgh',
-                protein: ['eg'],
-                produce: ['bp', 'ro', 'tto'],
-                cheese: ['moz']
-            }
-        },
-        'cap': {
-            fullname: 'Caprese',
-            toppings: {
-                sauce: 'mgh',
-                produce: ['bsl', 'tto'],
-                cheese: ['moz']
-            }
-        },
-        'hwn': {
-            fullname: 'Hawaiian',
-            toppings: {
-                sauce: 'bbq',
-                produce: ['pin'],
-                protein: ['hm'],
-                cheese: ['moz']
-            }
-        },
-        'jlp': {
-            fullname: 'Jalapeño',
-            toppings: {
-                sauce: 'bbq',
-                produce: ['zuc', 'sc', 'ro', 'jlp'],
-                cheese: ['moz']
-            }
-        }
-    }
-}
-
-PIZZA_TOPPINGS.returnFullName = function (shortcode) {
-    if (PIZZA_TOPPINGS.size.hasOwnProperty(shortcode))
-        return PIZZA_TOPPINGS.size[shortcode].fullname;
-    else if (PIZZA_TOPPINGS.sauce.hasOwnProperty(shortcode))
-        return PIZZA_TOPPINGS.sauce[shortcode];
-    else if (PIZZA_TOPPINGS.produce.hasOwnProperty(shortcode))
-        return PIZZA_TOPPINGS.produce[shortcode];
-    else if (PIZZA_TOPPINGS.protein.hasOwnProperty(shortcode))
-        return PIZZA_TOPPINGS.protein[shortcode];
-    else if (PIZZA_TOPPINGS.cheese.hasOwnProperty(shortcode))
-        return PIZZA_TOPPINGS.cheese[shortcode];
-    else if (PIZZA_TOPPINGS.preset.hasOwnProperty(shortcode))
-        return PIZZA_TOPPINGS.preset[shortcode].fullname;
-    return '';
-}
-
 class Pizza {
     constructor() {
         this.size = 'sm';
-        this.price = 0;
-        this.preset = '';
+        this.preset = 'cus';
+        this.name = 'Custom pizza';
         this.toppings = {
-            sauce: 'mgh',
+            sauce: ['mgh'],
             produce: [],
             protein: [],
-            cheese: []
+            cheese: ['moz']
         };
-    }
-
-    resetToppings() {
-        this.toppings = {
-            sauce: 'mgh',
-            produce: [],
-            protein: [],
-            cheese: []
-        };
-        this.price = 0;
     }
     
     setSize(s) {
@@ -180,57 +16,169 @@ class Pizza {
             this.size = s;
     }
 
-    setPrice(p) {
-        if (p >= 0)
-            this.price = p;
-    }
-
-    setPreset(pre) {
-        if (Object.keys(PIZZA_TOPPINGS.preset).includes(pre)) {
-            this.preset = pre;
-            this.resetToppings();
-            const toppings = PIZZA_TOPPINGS.preset[pre].toppings;
-            for (const type of Object.keys(toppings)) {
-                if (type === 'sauce')
-                    this.addTopping('sauce', toppings[type]);
-                else
-                    for (const itm of toppings[type])
-                        this.addTopping(type, itm);
-            }
-        }
-    }
-
     addTopping(type, item) {
         const topping = this.toppings[type];
-        if (type === 'sauce' && topping !== item)
-            this.toppings[type] = item;
-        else if (!topping.includes(item))
+        if (!topping.includes(item))
             topping.push(item);
     }
 
-    removeTopping(type, item = '') {
-        const topping = this.toppings[type];
-        if (type === 'sauce')
-            this.toppings[type] = 'mgh';
-        else if (item && topping.includes(item)) {
-            const i = topping.indexOf(item);
-            topping.splice(i, 1);
+    resetToppings() {
+        this.toppings = {
+            sauce: ['mgh'],
+            produce: [],
+            protein: [],
+            cheese: ['moz']
+        };
+    }
+
+    clearTopping(type) {
+        switch (type) {
+            case 'size':
+                this.size = 'sm';
+            case 'sauce':
+                this.toppings[type] = ['mgh'];
+            case 'cheese':
+                this.toppings[type] = ['moz'];
+            default:
+                this.toppings[type] = [];
         }
     }
 }
 
-function calculateCost(pizza) {
-    if (!pizza.size)
-        return 0;
-    const size = pizza.size;
-    let total = 0;
-    total += PIZZA_TOPPINGS.size[size].price;
-    for (const topping of Object.keys(pizza.toppings)) {
-        if (topping !== 'sauce') {
-            const qty = pizza.toppings[topping].length - PIZZA_TOPPINGS.type[topping].free;
-            total += (qty > 0) ? qty * PIZZA_TOPPINGS.type[topping].price : 0;
-        }
+function declarePreset(psc) {
+    let pizza = {};
+    switch (psc) {
+        case 'mgh':
+            pizza = new MargheritaPizza();
+            break;
+        case 'sup':
+            pizza = new SupremePizza();
+            break;
+        case 'ch':
+            pizza = new FiveCheesePizza();
+            break;
+        case 'sa':
+            pizza = new SpinachArtichokePizza();
+            break;
+        case 'wt':
+            pizza = new WhitePizza();
+            break;
+        case 'grk':
+            pizza = new GreekPizza();
+            break;
+        case 'bf':
+            pizza = new BreakfastPizza();
+            break;
+        case 'cap':
+            pizza = new CapresePizza();
+            break;
+        case 'hwn':
+            pizza = new HawaiianPizza();
+            break;
+        case 'jlp':
+            pizza = new JalapeñoPizza();
+            break;
+        default:
+            pizza = new Pizza();
     }
-    pizza.setPrice(total);
-    return total;
+    return pizza;
+}
+
+class MargheritaPizza extends Pizza {
+    constructor() {
+        super();
+        this.preset = 'mgh';
+        this.toppings.produce = ['bsl'];
+        this.name = 'Margherita Pizza';
+    }
+}
+
+class SupremePizza extends Pizza {
+    constructor() {
+        super();
+        this.preset = 'sup';
+        this.toppings.produce = ['bp', 'bo', 'ro', 'msh'];
+        this.toppings.protein = ['pep', 'ssg'];
+        this.name = 'Supreme Pizza';
+    }
+}
+
+class FiveCheesePizza extends Pizza {
+    constructor() {
+        super();
+        this.preset = 'ch';
+        this.toppings.cheese = ['moz', 'prm', 'rmo', 'ago', 'ft'];
+        this.name = 'Five Cheese Pizza';
+    }
+}
+
+class SpinachArtichokePizza extends Pizza {
+    constructor() {
+        super();
+        this.preset = 'sa';
+        this.toppings.cheese = ['moz', 'prm'];
+        this.toppings.produce = ['art', 'sp', 'glc'];
+        this.name = 'Spinach and Artichoke Pizza';
+    }
+}
+
+class WhitePizza extends Pizza {
+    constructor() {
+        super();
+        this.preset = 'wt';
+        this.toppings.sauce = ['afo'];
+        this.toppings.cheese = ['moz', 'prm', 'rct'];
+        this.toppings.produce = ['glc'];
+        this.name = 'White Pizza'
+    }
+}
+
+class GreekPizza extends Pizza {
+    constructor() {
+        super();
+        this.preset = 'grk';
+        this.toppings.cheese = ['ft'];
+        this.toppings.produce = ['sp', 'bo', 'tto', 'ro'];
+        this.name = 'Greek Pizza';
+    }
+}
+
+class BreakfastPizza extends Pizza {
+    constructor() {
+        super();
+        this.preset = 'bf';
+        this.toppings.produce = ['bp', 'ro', 'tto'];
+        this.toppings.protein = ['eg'];
+        this.name = 'Breakfast Pizza';
+    }
+}
+
+class CapresePizza extends Pizza {
+    constructor() {
+        super();
+        this.preset = 'cap';
+        this.toppings.produce = ['bsl', 'tto'];
+        this.name = 'Caprese Pizza';
+    }
+}
+
+class HawaiianPizza extends Pizza {
+    constructor() {
+        super();
+        this.preset = 'hwn';
+        this.toppings.sauce = ['bbq'];
+        this.toppings.produce = ['pin'];
+        this.toppings.protein = ['hm'];
+        this.name = 'Hawaiian Pizza';
+    }
+}
+
+class JalapeñoPizza extends Pizza {
+    constructor() {
+        super();
+        this.preset = 'jlp';
+        this.toppings.sauce = ['bbq'];
+        this.toppings.produce = ['zuc', 'sc', 'ro', 'jlp'];
+        this.name = 'Jalapeño Pizza'
+    }
 }
