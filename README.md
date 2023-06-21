@@ -11,11 +11,11 @@ View on [Github Pages](https://smkou.github.io/) - not available yet
 - HTML5
 - CSS3
 - Skeleton 2.0.4 by Dave Gamache
-- Vanilla JavaScript
+- Node.js environment
 
 ## Description
 
-Pizza Parlor is an app for ordering a pizza, where a user can choose toppings and size for each pizza, as well as the quantity for each pizza when ordering multiple or for events. Pizza toppings can be chosen based on 
+Pizza Parlor is an app for ordering a pizza, where a user can choose a size and toppings for each pizza, as well as the quantity for each pizza when ordering multiple or for events. Presets are available at the price of the base size.
 
 ### Under Consideration
 

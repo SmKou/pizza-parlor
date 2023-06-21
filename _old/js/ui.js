@@ -12,7 +12,7 @@ function loadPizza(pizza) {
                 elem.checked = true;
             else if (elem.checked && !toppings[topping].includes(elem.value))
                 elem.checked = false;
-        })
+        });
 }
 
 function submitTopping(type, pizza) {
