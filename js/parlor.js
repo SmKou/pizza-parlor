@@ -2,16 +2,16 @@ function Receipt() {
     this.pizzas = {};
     this.currPizzaId = 0;
     this.total = 0;
-    this.customer = new Customer();
+    this.customer = '';
 }
 
 Receipt.prototype.addPizza = function (pizza) {
+    this.currPizzaId++;
     const id = this.currPizzaId;
     const price = this.calculateCost(pizza);
     const qty = 1;
     this.total += price;
     this.pizzas[id] = { pizza, price, qty };
-    this.currPizzaId++;
 }
 
 Receipt.prototype.addQty = function (id, qty) {
@@ -29,8 +29,10 @@ Receipt.prototype.removePizza = function (id) {
 
 Receipt.prototype.removeQty = function (id, qty) {
     if (this.pizzas.hasOwnProperty(id))
-        if (this.pizzas[id].qty - qty <= 0)
+        if (this.pizzas[id].qty - qty <= 0) {
             this.removePizza(id);
+            return true;
+        }
         else
             this.pizzas[id].qty -= qty;
 }
@@ -49,6 +51,15 @@ Receipt.prototype.calculateCost = function (pizza) {
             total += qty * PIZZA_PRICES[topping].price;
     }
     return total;
+}
+
+Receipt.prototype.calculateTotal = function () {
+    const pizzas = this.pizzas;
+    let total = 0;
+    for (const id of Object.keys(pizzas)) {
+        total += pizzas[id].price * pizzas[id].qty;
+    }
+    this.total = total;
 }
 
 function Customer(name, addr) {

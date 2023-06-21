@@ -11,6 +11,7 @@
     <script src="js/constants.js"></script>
     <script src="js/pizza.js"></script>
     <script src="js/parlor.js"></script>
+    <script src="js/ui.js"></script>
     <script src="js/scripts.js"></script>
     <script src="js/tests.js"></script>
 </head>
@@ -294,19 +295,23 @@
         <section id="pizza-order">
             <form method="post" id="form-order">
                 <h3>Your Order</h3>
-                <div class="order">
+                <div>
+                    <div class="order"></div>
                     <div class="total">
                         <span>Total:</span>
                         <span class="total-sum"></span>
                     </div>
                 </div>
-                <div class="pizza">
+                <div class="pizza-details hidden">
+                    <div class="pizza"></div>
                     <div class="pizza-mng">
+                        <button class="mod-btn button-primary">Modify Pizza</button>
+                        <button class="remove-btn">Remove</button>
                         <label for="pizza-qty">
                             <input class="button" type="number" min="1" max="20" placeholder="1">
                         </label>
-                        <button id="add-qty">Add</button>
-                        <button id="remove-qty">Remove</button>
+                        <button class="add-qty">Add</button>
+                        <button class="minus-qty">Remove</button>
                     </div>
                 </div>
                 <div class="form-mng">
@@ -319,8 +324,28 @@
         <section id="pizza-customer">
             <form method="post" id="form-customer">
                 <h3>Customer Information</h3>
-                <div class="options"></div>
-                <div class="form-mng"></div>
+                <p>Do not enter your full name. Only provide a name for identifying you as the receiving customer.</p>
+                <p>Please enter a valid address</p>
+                <div class="options">
+                    <label for="customer-name">
+                        Name:
+                        <input type="text" id="customer-name" pattern="/\w+/g" required>
+                    </label>
+                    <br>
+                    <label for="customer-addr">
+                        Street Address:
+                        <input type="text" id="customer-addr" pattern="[0-9]+ [\w+ ]+" required>
+                    </label>
+                    <label for="customer-unit">
+                        Unit/Suite/Apt.
+                        <input type="text" id="customer-unit" pattern="/\w+/">
+                    </label>
+                </div>
+                <div class="form-mng">
+                    <input type="submit" value="Submit">
+                    <input type="reset" value="Reset info">
+                </div>
+                <div class="status hidden">Order complete! Delivering to <span class="c-name"></span> at <span class="c-addr"></span></div>
             </form>
         </section>
     </main>
