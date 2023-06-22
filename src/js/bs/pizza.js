@@ -21,7 +21,7 @@ const PIZZA_ASPECTS = {
         'bl': 'blue',
         'sc': 'sharp cheddar'
     },
-    produce: {
+    veggies: {
         'bp': 'bell pepper',
         'cp': 'chili pepper',
         'bsl': 'basil',
@@ -50,27 +50,11 @@ const PIZZA_ASPECTS = {
 }
 
 const PIZZA_PRICES = {
-    size: {
-        'sm': 8,
-        'mm': 12,
-        'lg': 16
-    },
-    sauce: {
-        numFreeItms: 1,
-        addOne: 0.5
-    },
-    produce: {
-        numFreeItms: 3,
-        addOne: 0.5
-    },
-    protein: {
-        numFreeItms: 1,
-        addOne: 1
-    },
-    cheese: {
-        numFreeItms: 1,
-        addOne: 0.75
-    }
+    size: { 'sm': 8, 'mm': 12, 'lg': 16 },
+    sauce: { numFreeItms: 1, addOne: 0.5 },
+    veggies: { numFreeItms: 3, addOne: 0.5 },
+    protein: { numFreeItms: 1, addOne: 1 },
+    cheese: { numFreeItms: 1, addOne: 0.75 }
 }
 
 function Pizza() {
@@ -84,8 +68,19 @@ function Pizza() {
 }
 
 Pizza.prototype.setSize = function (size) {
-    if (['sm', 'mm', 'lg'].includes(size))
+    if (PIZZA_ASPECTS.size.hasOwnProperty(size))
         this.size = size;
 }
 
-Pizza.prototype.addTopping = function () {}
+Pizza.prototype.addTopping = function (type, item) {
+    if (!PIZZA_ASPECTS.hasOwnProperty(type)
+        || !PIZZA_ASPECTS[type].hasOwnProperty(item))
+        return false;
+    
+    if (!this.toppings[type].includes(item))
+        this.toppings[type] = [
+            ...this.toppings[type],
+            item];
+    else
+        return false;
+}
