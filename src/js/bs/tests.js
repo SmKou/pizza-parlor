@@ -62,14 +62,36 @@ const tests = {
             expected: ['moz', 'rct'],
             result: () => {
                 const pizza = new Pizza();
-                const type = "sauce";
-                const item = "pnk";
+                const type = "cheese";
+                const item = "rct";
                 pizza.addTopping(type, item);
                 return pizza.toppings[type];
             }
         },
-        "change-valid-veggies-item": {},
-        "change-valid-protein-item": {},
+        "change-valid-veggies-item": {
+            statement: "Should change toppings to include beggie item in veggie topping",
+            code: 'const pizza = new Pizza();\n\tconst type = "veggies";\n\tconst item = "bsl";\n\tpizza.addTopping(type, item);',
+            expected: ['bsl'],
+            result: () => {
+                const pizza = new Pizza();
+                const type = "veggies";
+                const item = "bsl";
+                pizza.addTopping(type, item);
+                return pizza.toppings[type];
+            }
+        },
+        "change-valid-protein-item": {
+            statement: "Should change toppings to include protein item in protein topping",
+            code: 'const pizza = new Pizza();\n\tconst type = "protein";\n\tconst item = "eg";\n\tpizza.addTopping(type, item);',
+            expected: ['eg'],
+            result: () => {
+                const pizza = new Pizza();
+                const type = "protein";
+                const item = "eg";
+                pizza.addTopping(type, item);
+                return pizza.toppings[type];
+            }
+        },
         "no-change-invalid-type": {
             statement: "Should not change toppings if topping type not an option",
             code: 'const pizza = new Pizza();\n\tconst type = "fish";\n\tconst item = "hm";\n\tpizza.addTopping(type, item);',
