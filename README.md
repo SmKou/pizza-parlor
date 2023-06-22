@@ -11,7 +11,7 @@ View on [Github Pages](https://smkou.github.io/) - not available yet
 - HTML5
 - CSS3
 - Skeleton 2.0.4 by Dave Gamache
-- Node.js environment
+- Vanilla JavaScript
 
 ## Description
 

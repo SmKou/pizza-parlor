@@ -30,7 +30,7 @@ function loadApp() {
     formPreset.addEventListener('submit', e => {
         e.preventDefault();
 
-        const preset = document.querySelector('[name="preset"]:checked').value;
+        
         const id = (pizzaParlor.id) ? pizzaParlor.id : 0;
 
         if (!pizzaParlor.id || (pizzaParlor.id && preset !== pizzaParlor.pizza.preset)) {

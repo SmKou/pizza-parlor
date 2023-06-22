@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pizza Parlor</title>
+
+</head>
+<body>
+    <header>
+        <a 
+            class="button button-primary nav-btn"
+            id="nav-preset"
+            href="#pizza-preset">Pre
+            <span class="phablet-no-display">set</span>
+        </a>
+        <a
+            class="button nav-btn"
+            id="nav-size"
+            href="#pizza-size">Size
+        </a>
+        <a
+            class="button nav-btn"
+            id="nav-size"
+            href="#pizza-size">S<span class="phablet-no-display">au</span>c<span class="phablet-no-display">e</span>
+        </a>
+        <a
+            class="button nav-btn"
+            id="nav-size"
+            href="#pizza-size">Ch<span class="phablet-no-display">ee</span>s<span class="phablet-no-display">e</span>
+        </a>
+        <a
+            class="button nav-btn"
+            id="nav-size"
+            href="#pizza-size">Veg
+            <span class="pbablet-no-display">gies</span>
+        </a>
+        <a
+            class="button nav-btn"
+            id="nav-size"
+            href="#pizza-size">Prot
+            <span class="phablet-no-display">ein</span>
+        </a>
+        <a
+            class="button nav-btn"
+            id="nav-size"
+            href="#pizza-size">Qty
+        </a>
+    </header>
+    <main>
+        <section id="pizza-preset">
+            <form method="post" id="form-preset">
+                <h3>Presets</h3>
+                <p>Please note that if you change the preset after having already made some selections, the selections that deviate from
+                    the preset will be lost or overwritten. This includes when resetting.</p>
+                <div class="options">
+                    <label for="preset-cus">
+                        <input type="radio" id="preset-cus" name="preset" value="cus" checked>
+                        Custom pizza
+                    </label>
+                    <label for="preset-mgh">
+                        <input type="radio" id="preset-mgh" name="preset" value="mgh">
+                        Margherita
+                    </label>
+                    <label for="preset-sup">
+                        <input type="radio" id="preset-sup" name="preset" value="sup">
+                        Supreme
+                    </label>
+                    <label for="preset-ch">
+                        <input type="radio" id="preset-ch" name="preset" value="ch">
+                        Five Cheese
+                    </label>
+                    <label for="preset-sa">
+                        <input type="radio" id="preset-sa" name="preset" value="sa">
+                        Spinach and Artichoke
+                    </label>
+                    <label for="preset-wt">
+                        <input type="radio" id="preset-wt" name="preset" value="wt">
+                        Blanca
+                    </label>
+                    <label for="preset-grk">
+                        <input type="radio" id="preset-grk" name="preset" value="grk">
+                        Greek
+                    </label>
+                    <label for="preset-bf">
+                        <input type="radio" id="preset-bf" name="preset" value="bf">
+                        Breakfast
+                    </label>
+                    <label for="preset-cap">
+                        <input type="radio" id="preset-cap" name="preset" value="cap">
+                        Caprese
+                    </label>
+                    <label for="preset-hwn">
+                        <input type="radio" id="preset-hwn" name="preset" value="hwn">
+                        Hawaiian
+                    </label>
+                    <label for="preset-jlp">
+                        <input type="radio" id="preset-jlp" name="preset" value="jlp">
+                        Jalapeño
+                    </label>
+                </div>
+                <div class="form-mng">
+                    <input 
+                        type="submit" 
+                        class="button-primary" 
+                        id="submit-preset" 
+                        value="Choose preset"
+                    />
+                    <input 
+                        type="reset" 
+                        id="reset-preset" 
+                        value="Reset"
+                    />
+                </div>
+            </form>
+        </section>
+        <section id="pizza-size">
+            <form method="post"
+        </section>
+    </main>
+</body>
+</html>
