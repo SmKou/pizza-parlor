@@ -188,12 +188,12 @@ const tests = {
         },
         "change-price-by-veggies": {
             statement: "Should set price to cost with additional veggies",
-            code: 'const pizza = new Pizza();\n\tconst type = "veggies";\n\tconst items = ["bsl", "jlp", "ro"];\n\tfor (const itm of items)\n\t\tpizza.addTopping(type, itm);\n\tpizza.setPrice();',
+            code: 'const pizza = new Pizza();\n\tconst type = "veggies";\n\tconst items = ["bsl", "jlp", "ro", "glc"];\n\tfor (const itm of items)\n\t\tpizza.addTopping(type, itm);\n\tpizza.setPrice();',
             expected: 8.5,
             result: () => {
                 const pizza = new Pizza();
                 const type = "veggies";
-                const items = ["bsl", "jlp", "ro"];
+                const items = ["bsl", "jlp", "ro", "glc"];
                 for (const itm of items)
                     pizza.addTopping(type, itm);
                 pizza.setPrice();
