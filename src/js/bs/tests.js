@@ -1,17 +1,18 @@
 const tests = {
     "Pizza()": {
         "check-object-exists": {
-            statement: "Should create a pizza object with size small, sauce margherita and cheese mozzarella",
+            statement: "Should create a pizza object with size small, sauce margherita and cheese mozzarella, and price 0",
             code: 'const pizza = new Pizza();',
-            expected: () => ({
+            expected: {
                 size: 'sm',
+                price: 0,
                 toppings: {
                     sauce: ['mgh'],
                     cheese: ['moz'],
                     veggies: [],
                     protein: []
                 }
-            }),
+            },
             result: () => {
                 const pizza = new Pizza();
                 return pizza;
@@ -22,7 +23,7 @@ const tests = {
         "change-valid-size": {
             statement: "Should change size property of pizza object",
             code: 'const pizza = new Pizza();\n\tconst size = "mm";\n\tpizza.setSize(size);',
-            expected: () => 'mm',
+            expected: 'mm',
             result: () => {
                 const pizza = new Pizza();
                 const size = 'mm';
@@ -33,7 +34,7 @@ const tests = {
         "no-change-invalid-size": {
             statement: "Should not change size property of size object if input not a valid size",
             code: 'const pizza = new Pizza();\n\tconst size = "ns";\n\tpizza.setSize(size);',
-            expected: () => 'sm',
+            expected: 'sm',
             result: () => {
                 const pizza = new Pizza();
                 const size = "ns";
@@ -43,10 +44,10 @@ const tests = {
         }
     },
     "Pizza.addTopping()": {
-        "change-valid-type-item": {
-            statement: "Should change toppings to include item in topping type",
+        "change-valid-sauce-item": {
+            statement: "Should change toppings to include sauce item in sauce topping",
             code: 'const pizza = new Pizza();\n\tconst type = "sauce";\n\tconst item = "pnk";\n\tpizza.addTopping(type, item);',
-            expected: () => ['mgh', 'pnk'],
+            expected: ['mgh', 'pnk'],
             result: () => {
                 const pizza = new Pizza();
                 const type = "sauce";
@@ -55,10 +56,24 @@ const tests = {
                 return pizza.toppings[type];
             }
         },
+        "change-valid-cheese-item": {
+            statement: "Should change toppings to include cheese item in cheese topping",
+            code: 'const pizza = new Pizza();\n\tconst type = "cheese";\n\tconst item = "rct";\n\tpizza.addTopping(type, item);',
+            expected: ['moz', 'rct'],
+            result: () => {
+                const pizza = new Pizza();
+                const type = "sauce";
+                const item = "pnk";
+                pizza.addTopping(type, item);
+                return pizza.toppings[type];
+            }
+        },
+        "change-valid-veggies-item": {},
+        "change-valid-protein-item": {},
         "no-change-invalid-type": {
             statement: "Should not change toppings if topping type not an option",
             code: 'const pizza = new Pizza();\n\tconst type = "fish";\n\tconst item = "hm";\n\tpizza.addTopping(type, item);',
-            expected: () => false,
+            expected: false,
             result: () => {
                 const pizza = new Pizza();
                 const type = "fish";
@@ -69,7 +84,7 @@ const tests = {
         "no-change-invalid-item": {
             statement: "Should not change toppings if item not an option",
             code: 'const pizza = new Pizza();\n\tconst type = "sauce";\n\tconst item = "y";\n\tpizza.addTopping(type, item);',
-            expected: () => false,
+            expected: false,
             result: () => {
                 const pizza = new Pizza();
                 const type = "sauce";
@@ -80,7 +95,7 @@ const tests = {
         "no-change-wrong-type": {
             statement: "Should not change toppings if item not an option of topping type",
             code: 'const pizza = new Pizza();\n\tconst type = "sauce";\n\tconst item = "y";\n\tpizza.addTopping(type, item);',
-            expected: () => false,
+            expected: false,
             result: () => {
                 const pizza = new Pizza();
                 const type = "sauce";
@@ -91,7 +106,7 @@ const tests = {
         "no-change-existing-item": {
             statement: "Should not change toppings if item already listed",
             code: 'const pizza = new Pizza();\n\tconst type = "sauce";\n\tconst item = "mgh";\n\tpizza.addTopping(type, item);',
-            expected: () => false,
+            expected: false,
             result: () => {
                 const pizza = new Pizza();
                 const type = "sauce";
@@ -99,21 +114,104 @@ const tests = {
                 return pizza.addTopping(type, item);
             }
         }
+    },
+    "Pizza.setPrice()": {
+        "change-default-price": {
+            statement: "Should set price to cost of small pizza with one sauce and one cheese (the default)",
+            code: 'const pizza = new Pizza();\n\tpizza.setPrice();',
+            expected: 8,
+            result: () => {
+                const pizza = new Pizza();
+                pizza.setPrice();
+                return pizza.price;
+            }
+        },
+        "change-price-by-size": {
+            statement: "Should set price to cost with different size",
+            code: 'const pizza = new Pizza();\n\tconst size = "mm";\n\tpizza.setSize(size);\n\tpizza.setPrice();',
+            expected: 12,
+            result: () => {
+                const pizza = new Pizza();
+                const size = "mm";
+                pizza.setSize(size);
+                pizza.setPrice();
+                return pizza.price;
+            }
+        },
+        "change-price-by-sauce": {
+            statement: "Should set price to cost with additional sauce",
+            code: 'const pizza = new Pizza();\n\tconst type = "sauce";\n\tconst item = "pnk";\n\tpizza.addTopping(type, item);\n\tpizza.setPrice();',
+            expected: 8.25,
+            result: () => {
+                const pizza = new Pizza();
+                const type = "sauce";
+                const item = "pnk";
+                pizza.addTopping(type, item);
+                pizza.setPrice();
+                return pizza.price;
+            }
+        },
+        "change-price-by-cheese": {
+            statement: "Should set price to cost with additional cheese",
+            code: 'const pizza = new Pizza();\n\tconst type = "cheese";\n\tconst item = "rct";\n\tpizza.addTopping(type, item);\n\tpizza.setPrice();',
+            expected: 8.75,
+            result: () => {
+                const pizza = new Pizza();
+                const type = "cheese";
+                const item = "rct";
+                pizza.addTopping(type, item);
+                pizza.setPrice();
+                return pizza.price;
+            }
+        },
+        "change-price-by-veggies": {
+            statement: "Should set price to cost with additional veggies",
+            code: 'const pizza = new Pizza();\n\tconst type = "veggies";\n\tconst items = ["bsl", "jlp", "ro"];\n\tfor (const itm of items)\n\t\tpizza.addTopping(type, itm);\n\tpizza.setPrice();',
+            expected: 8.5,
+            result: () => {
+                const pizza = new Pizza();
+                const type = "veggies";
+                const items = ["bsl", "jlp", "ro"];
+                for (const itm of items)
+                    pizza.addTopping(type, itm);
+                pizza.setPrice();
+                return pizza.price;
+            }
+        },
+        "change-price-by-protein": {
+            statement: "Should set price to cost with additional protein",
+            code: 'const pizza = new Pizza();\n\tconst type = "protein";\n\tconst items = ["eg", "bs"];\n\tfor (const itm of items)\n\t\tpizza.addTopping(type, itm);\n\tpizza.setPrice();',
+            expected: 9,
+            result: () => {
+                const pizza = new Pizza();
+                const type = "protein";
+                const items = ["eg", "bs"];
+                for (const itm of items)
+                    pizza.addTopping(type, itm);
+                pizza.setPrice();
+                return pizza.price;
+            }
+        }
     }
 }
 
-function runTests() {
-    Object.keys(tests).forEach(fn => {
-        console.log('Describe: ' + fn);
-        Object.keys(tests[fn]).forEach(testCase => {
-            const test = tests[fn][testCase];
-            const expected = formatReturn(test.expected());
-            const outcome = formatReturn(test.result());
-            if (expected === outcome)
-                console.log(`Test: ${test.statement}\ncode: ${test.code}\nstatus: passed`);
-            else
-                console.log(`Test: ${test.statement}\ncode: ${test.code}\nstatus: failed\n\nExpected: ${expected}\nResult: ${outcome}`);
-        })
+function runTests(funcName = undefined) {
+    if (funcName !== undefined)
+        runFuncTest(funcName, tests[funcName]);
+    else
+        Object.keys(tests).forEach(fn => runFuncTest(fn, tests[fn]))
+}
+
+function runFuncTest(fn, testCases) {
+    console.log('Describe: ' + fn);
+    Object.keys(testCases).forEach(testCase => {
+        const test = testCases[testCase];
+        const expected = formatReturn(test.expected);
+        const outcome = formatReturn(test.result());
+        if (expected === outcome)
+            console.log(`Test: ${test.statement}\ncode: ${test.code}\nstatus: passed`);
+        else
+            console.log(`Test: ${test.statement}\ncode: ${test.code}\nstatus: failed\n\nExpected: ${expected}\nResult: ${outcome}`);
     })
 }
 

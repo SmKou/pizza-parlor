@@ -51,7 +51,7 @@ const PIZZA_ASPECTS = {
 
 const PIZZA_PRICES = {
     size: { 'sm': 8, 'mm': 12, 'lg': 16 },
-    sauce: { numFreeItms: 1, addOne: 0.5 },
+    sauce: { numFreeItms: 1, addOne: 0.25 },
     veggies: { numFreeItms: 3, addOne: 0.5 },
     protein: { numFreeItms: 1, addOne: 1 },
     cheese: { numFreeItms: 1, addOne: 0.75 }
@@ -59,6 +59,7 @@ const PIZZA_PRICES = {
 
 function Pizza() {
     this.size = 'sm';
+    this.price = 0;
     this.toppings = {
         sauce: ['mgh'],
         cheese: ['moz'],
@@ -83,4 +84,15 @@ Pizza.prototype.addTopping = function (type, item) {
             item];
     else
         return false;
+}
+
+Pizza.prototype.setPrice = function () {
+    let total = 0;
+    total += PIZZA_PRICES.size[this.size];
+    for (const type of Object.keys(this.toppings)) {
+        const n = this.toppings[type].length - PIZZA_PRICES[type].numFreeItms;
+        if (n > 0)
+            total += n * PIZZA_PRICES[type].addOne;
+    }
+    this.price = total;
 }
