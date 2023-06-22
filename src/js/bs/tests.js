@@ -1,22 +1,44 @@
 const tests = {
-    "Pizza": {
+    "Pizza()": {
         "1": {
             statement: "Should create a pizza object with size small, sauce margherita and cheese mozzarella",
             code: 'const pizza = new Pizza();',
-            expected: function () {
-                return {
-                    size: 'sm',
-                    toppings: {
-                        sauce: ['mgh'],
-                        cheese: ['moz'],
-                        veggies: [],
-                        protein: []
-                    }
+            expected: () => ({
+                size: 'sm',
+                toppings: {
+                    sauce: ['mgh'],
+                    cheese: ['moz'],
+                    veggies: [],
+                    protein: []
                 }
-            },
-            result: function () {
+            }),
+            result: () => {
                 const pizza = new Pizza();
                 return pizza;
+            }
+        }
+    },
+    "Pizza.setSize()": {
+        "1": {
+            statement: "Should change size property of pizza object",
+            code: 'const pizza = new Pizza();\n\tconst size = "mm";\n\tpizza.setSize(size);',
+            expected: () => 'mm',
+            result: () => {
+                const pizza = new Pizza();
+                const size = 'mm';
+                pizza.setSize(size);
+                return pizza.size;
+            }
+        },
+        "2": {
+            statement: "Should not change size property of size object if input not a valid size",
+            code: 'const pizza = new Pizza();\n\tconst size = "ns";\n\tpizza.setSize(size);',
+            expected: () => 'sm',
+            result: () => {
+                const pizza = new Pizza();
+                const size = "ns";
+                pizza.setSize(size);
+                return pizza.size;
             }
         }
     }

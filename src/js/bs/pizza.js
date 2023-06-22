@@ -7,3 +7,8 @@ function Pizza() {
         protein: []
     }
 }
+
+Pizza.prototype.setSize = function (size) {
+    if (['sm', 'mm', 'lg'].includes(size))
+        this.size = size;
+}
