@@ -1,10 +1,23 @@
 const tests = {
     "Pizza": {
         "1": {
-            statement: "Should create a pizza object",
-            code: '',
-            expected: '',
-            result: function () {}
+            statement: "Should create a pizza object with size small, sauce margherita and cheese mozzarella",
+            code: 'const pizza = new Pizza();',
+            expected: function () {
+                return {
+                    size: 'sm',
+                    toppings: {
+                        sauce: ['mgh'],
+                        cheese: ['moz'],
+                        veggies: [],
+                        protein: []
+                    }
+                }
+            },
+            result: function () {
+                const pizza = new Pizza();
+                return pizza;
+            }
         }
     }
 }
@@ -14,11 +27,12 @@ function runTests() {
         console.log('Describe: ' + fn);
         Object.keys(tests[fn]).forEach(testCase => {
             const test = tests[fn][testCase];
-            const expected = formatReturn(test.expected);
+            const expected = formatReturn(test.expected());
             const outcome = formatReturn(test.result());
-            console.log(`${funcName} Test: ${test.statement}
-                code: ${test.code}
-                status: ${expected === outcome}`)
+            if (expected === outcome)
+                console.log(`Test: ${test.statement}\ncode: ${test.code}\nstatus: ${expected === outcome}`);
+            else
+                console.log(`Test: ${test.statement}\ncode: ${test.code}\nstatus: failed\n\nExpected: ${expected}\nResult: ${outcome}`);
         })
     })
 }
@@ -44,4 +58,5 @@ function formatReturn(data) {
         default:
             dataStr = 'undefined';
     }
+    return dataStr;
 }
