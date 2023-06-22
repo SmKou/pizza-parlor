@@ -57,33 +57,20 @@ const PIZZA_PRICES = {
     cheese: { numFreeItms: 1, addOne: 0.75 }
 }
 
-function Pizza() {
-    this.size = 'sm';
+function Pizza(veggies, protein, size = 'sm', sauce = ['mgh'], cheese = ['moz']) {
+    this.size = size;
     this.price = 0;
     this.toppings = {
-        sauce: ['mgh'],
-        cheese: ['moz'],
-        veggies: [],
-        protein: []
+        sauce,
+        cheese,
+        veggies,
+        protein
     }
 }
 
 Pizza.prototype.setSize = function (size) {
     if (PIZZA_ASPECTS.size.hasOwnProperty(size))
         this.size = size;
-}
-
-Pizza.prototype.addTopping = function (type, item) {
-    if (!PIZZA_ASPECTS.hasOwnProperty(type)
-        || !PIZZA_ASPECTS[type].hasOwnProperty(item))
-        return false;
-    
-    if (!this.toppings[type].includes(item))
-        this.toppings[type] = [
-            ...this.toppings[type],
-            item];
-    else
-        return false;
 }
 
 Pizza.prototype.setPrice = function () {
