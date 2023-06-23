@@ -17,6 +17,12 @@ View on [Github Pages](https://smkou.github.io/) - not available yet
 
 Pizza Parlor is an app for ordering a pizza, where a user can choose a size and toppings for each pizza, as well as the quantity for each pizza when ordering multiple or for events. Presets are available at the price of the base size.
 
+### Notes
+
+**Green and Red Workflow**
+- Commit after each red and green test
+- Only commit after good fail
+
 ### Under Consideration
 
 - Display list of pizzas ordered with lists that can be clicked for detail
