@@ -57,6 +57,26 @@ const ReceiptTests = {
                 receipt.addQuantity(id, qty);
                 return receipt.pizzas[id].qty;
             }
+        },
+        "error-invalid-id": {
+            statement: "Should not add quantity to only pizza if id is invalid",
+            code: 'const id = 0;\n      const qty = 1;\n      const pizza = new Pizza();\n      const receipt = new Receipt();\n      receipt.addPizza(pizza);\n      receipt.addQuantity(id, qty);',
+            expected: {
+                qty: 1,
+                resp: false
+            },
+            result: () => {
+                const id = 2;
+                const qty = 1;
+                const pizza = new Pizza();
+                const receipt = new Receipt();
+                receipt.addPizza(pizza);
+                const resp = receipt.addQuantity(id, qty);
+                return {
+                    qty: receipt.pizzas[1].qty,
+                    resp
+                };
+            }
         }
     }
 }
