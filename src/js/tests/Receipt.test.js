@@ -136,8 +136,8 @@ const ReceiptTests = {
             },
             result: () => {
                 const pizza1 = new Pizza();
-                const pizza2 = new Pizza("mm");
-                const id = 1;
+                const pizza2 = new Pizza();
+                const id = 0;
                 const receipt = new Receipt();
                 receipt.addPizza(pizza1);
                 receipt.addPizza(pizza2);

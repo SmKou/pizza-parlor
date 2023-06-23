@@ -22,6 +22,8 @@ Receipt.prototype.addQuantity = function (id, qty) {
 }
 
 Receipt.prototype.getPizza = function (id) {
+    if (!this.pizzas.hasOwnProperty(id))
+        return false;
     this.currentId = id;
     return this.pizzas[id].pizza;
 }
