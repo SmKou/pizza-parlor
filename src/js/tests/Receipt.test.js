@@ -9,5 +9,37 @@ const ReceiptTests = {
                 return receipt;
             }
         }
+    },
+    "Receipt.addPizza()": {
+        "check-receipt-updated": {
+            statement: "Should increment assignId and currentId and add pizza to pizzas with quantity and total",
+            code: 'const pizza = new Pizza();\n      pizza.setPrice();\n      const receipt = new Receipt();',
+            expected: {
+                pizzas: {
+                    "1": {
+                        pizza: {
+                            size: 'sm',
+                            price: 8,
+                            toppings: {
+                                sauce: ['mgh'],
+                                cheese: ['moz'],
+                                veggies: [],
+                                protein: []
+                            }
+                        },
+                        qty: 1,
+                        ttl: 8
+                    }
+                },
+                assignId: 1,
+                currentId: 1
+            },
+            result: () => {
+                const pizza = new Pizza();
+                pizza.setPrice();
+                const receipt = new Receipt();
+                return receipt;
+            }
+        }
     }
 }
