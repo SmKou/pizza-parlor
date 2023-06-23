@@ -15,8 +15,8 @@ Receipt.prototype.addPizza = function (pizza) {
 }
 
 Receipt.prototype.addQuantity = function (id, qty) {
-    // if (this.pizzas.hasOwnProperty(id))
-    //     this.pizzas[id].qty += qty;
-    // else
-    //     return false;
+    if (this.pizzas.hasOwnProperty(id))
+        this.pizzas[id].qty += qty;
+    else
+        return false;
 }
