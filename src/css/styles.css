@@ -40,10 +40,7 @@ body {
 
 /* skeleton: container */ main {
     width: 100vw;
-    height: 100vh;
     margin: 0 auto;
-    padding: 0 2.0rem;
-    overflow: scroll-y;
 }
 
 /* Typography
@@ -214,57 +211,7 @@ pre, code { background: #CCC }
 /* Template sections
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    display: flex;
-}
 
-.nav-btn {
-    width: 100%;
-    border-radius: 0;
-}
-
-section {
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-form {
-    width: 98%;
-    max-width: 900px;
-}
-
-.options {
-    width: 100%;
-    padding: 20px 0;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr))
-}
-
-label {
-    position: relative;
-    padding-left: 22px;
-}
-
-.form-mng {
-    width: 100%;
-    display: flex;
-}
-
-.form-mng button,
-.form-mng input {
-    margin: 0 2rem;
-}
-
-.pizza-mng {
-    display: flex;
-}
 
 /* Messages and Notices
 –––––––––––––––––––––––––––––––––––––––––––––––––– */

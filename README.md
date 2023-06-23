@@ -4,7 +4,7 @@ By: [Stella Marie](http://smkou.com)
 
 App for ordering a pizza.
 
-View on [Github Pages](https://smkou.github.io/) - not available yet
+View on [Github Pages](https://smkou.github.io/pizza-parlor)
 
 ## Technologies Used
 
@@ -15,16 +15,19 @@ View on [Github Pages](https://smkou.github.io/) - not available yet
 
 ## Description
 
-Pizza Parlor is an app for ordering a pizza, where a user can choose a size and toppings for each pizza, as well as the quantity for each pizza when ordering multiple or for events. Presets are available at the price of the base size.
+Pizza Parlor is an app for ordering a pizza, where a user can choose a size and toppings for each pizza, as well as the quantity for each pizza when ordering multiple or for events.
+
+This project demonstrates the use of prototypes.
 
 ### Notes
 
 **Green and Red Workflow**
 - Commit after each red and green test
-- Only commit after good fail
+- Only commit after good fail and pass
 
 ### Under Consideration
 
+- Add presets
 - Display list of pizzas ordered with lists that can be clicked for detail
 - Offer delivery option
 
@@ -32,9 +35,9 @@ Pizza Parlor is an app for ordering a pizza, where a user can choose a size and 
 
 This project will not be accepting pull requests, but you may fork the project for your own use.
 
-- Navigate to [repository page](https://github.com/SmKou/pizza-parlor)
-- Fork the project
-- Clone 
+- [repository page](https://github.com/SmKou/pizza-parlor)
+- Fork the project: Click fork and fill out create repo form
+- In newly made repo, click Code (clone) and get the .git url
 
 To clone the project in your termainl:
 
@@ -46,47 +49,17 @@ git pull origin main
 - Navigate to the top level of the directory
 - Open index.html in your browser
 
-To keep your forked repo up to date with any updates I make to the repo, use: 
-
-```bash
-git remote add upstream https://github.com/SmKou/pizza-parlor.git
-```
-
-If you find that you need to remove the upstream, use:
-
-```bash
-git remote rm upstream
-```
-
-However, I suggest checking that there is an upstream first with:
-
-```bash
-git remote -v
-```
-
 Demo: [Github Pages](https://smkou.github.io/pizza-parlor/)
 
 ## Known Bugs
 
-- Order summary not finished
-- Customer information not finished
-- Receipt object in testing
-
 Please report any issues in viewing the site.
 
-File containing test cases: js/tests.js
-- From JS files, identify the functions you want to see the tests of
+Files containing test cases: tests/
 
-    Example:
-    filename: js/utilities.js
-    function name: isEmpty()
-
-- Open index.html in web browser
-- Open console in devtools
-- Either: 
-
-    use command: listFunctions() to see available functions
-    use command: runTests(functionName) to run or see tests
+- Open project in browser
+- Navigate to console in devtools
+- Follow the prompt to navigate and view the tests
 
 ## License
 

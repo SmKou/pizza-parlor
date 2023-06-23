@@ -3,6 +3,8 @@ const components = {
     "Receipt": ReceiptTests
 }
 
+consoleInterface();
+
 function consoleInterface() {
     let options = "";
     let addLine = false;
@@ -22,7 +24,7 @@ function consoleInterface() {
         }
         addComma = false;
     }
-    console.log(`To run tests, call the function, runTestSuite() in the console.\nrunTestSuite() can take up to two arguments: component, function_name (or name for describes). The following list shows "component: ...function_names". Providing only a component will return all the tests on all the describes of that component, whereas providing a component and a function_name will return just the tests for that describe in the component.\n${options}\nDon't forget quotations.`);
+    console.log(`To run tests, call the function, runTestSuite() here in the console.\n\nrunTestSuite() can take up to two arguments: component, function_name (or name for describes). The following list shows "component: ...function_names". Providing only a component will return all the tests on all the describes of that component, whereas providing a component and a function_name will return just the tests for that describe in the component.\n\n${options}\n\nDon't forget quotations.`);
 }
 
 function runTestSuite(component = undefined, fn = undefined) {
