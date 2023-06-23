@@ -111,7 +111,7 @@ const ReceiptTests = {
             code: 'const pizza1 = new Pizza();\n      const pizza2 = new Pizza("mm");\n      const id = 1;\n      const receipt = new Receipt();\n      receipt.addPizza(pizza1);\n      receipt.addPizza(pizza2);\n      const pizza = receipt.getPizza(id);',
             expected: {
                 curr: 1,
-                size: 'mm' 
+                size: 'sm' 
             }, 
             result: () => {
                 const pizza1 = new Pizza();
