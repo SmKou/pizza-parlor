@@ -77,6 +77,32 @@ const ReceiptTests = {
                     resp
                 };
             }
+        },
+        "change-pizza-by-id": {
+            statement: "Should add quantity to specified pizza",
+            code: 'const id = 2;\n      const qty = 1;\n      const pizza1 = new Pizza();\n      const pizza2 = new Pizza();\n      const pizza3 = new Pizza();\n      const receipt = new Receipt();\n      receipt.addPizza(pizza1);\n      receipt.addPizza(pizza2)\n      receipt.addPizza(pizza3)\n      receipt.addQuantity(id, qty);',
+            expected: {
+                qty1: 1,
+                qty2: 2,
+                qty3: 1
+            },
+            result: () => {
+                const id = 2;
+                const qty = 1;
+                const pizza1 = new Pizza();
+                const pizza2 = new Pizza();
+                const pizza3 = new Pizza();
+                const receipt = new Receipt();
+                receipt.addPizza(pizza1);
+                receipt.addPizza(pizza2);
+                receipt.addPizza(pizza3);
+                receipt.addQuantity(id, qty);
+                return {
+                    qty1: receipt.pizzas[1].qty,
+                    qty2: receipt.pizzas[2].qty,
+                    qty3: receipt.pizzas[3].qty
+                }
+            }
         }
     }
 }
