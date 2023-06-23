@@ -42,5 +42,21 @@ const ReceiptTests = {
                 return receipt;
             }
         }
+    },
+    "Receipt.addQuantity()": {
+        "change-only-pizza": {
+            statement: "Should increase quantity of only pizza in receipt",
+            code: 'const id = 1;\n      const qty = 1;\n      const pizza = new Pizza();\n      const receipt = new Receipt();\n      receipt.addPizza(pizza);\n      receipt.addQuantity(id, qty);',
+            expected: 2,
+            result: () => {
+                const id = 1;
+                const qty = 1;
+                const pizza = new Pizza();
+                const receipt = new Receipt();
+                receipt.addPizza(pizza);
+                receipt.addQuantity(id, qty);
+                return receipt.pizzas[id].qty;
+            }
+        }
     }
 }
