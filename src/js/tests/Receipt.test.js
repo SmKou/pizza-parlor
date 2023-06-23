@@ -148,5 +148,16 @@ const ReceiptTests = {
                 }
             }
         }
+    },
+    "Receipt.getTotal()": {
+        "empty-returns-zero": {
+            statement: "Should return 0 if no pizzas on receipt",
+            code: 'const receipt = new Receipt();\n      receipt.getTotal();',
+            expected: 0,
+            result: () => {
+                const receipt = new Receipt();
+                return receipt.getTotal();
+            }
+        }
     }
 }
