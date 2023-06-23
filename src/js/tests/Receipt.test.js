@@ -169,6 +169,33 @@ const ReceiptTests = {
                 receipt.addPizza(pizza);
                 return receipt.getTotal();
             }
+        },
+        "check-one-type-qty-two": {
+            statement: "Should return doubled price for quantity of two",
+            code: 'const pizza = new Pizza();\n      const id = 1;\n      const qty = 1;\n      const receipt = new Receipt();\n      receipt.addPizza(pizza);\n      receipt.addQuantity(id, qty);\n      receipt.getTotal();',
+            expected: 16,
+            result: () => {
+                const pizza = new Pizza();
+                const id = 1;
+                const qty = 1;
+                const receipt = new Receipt();
+                receipt.addPizza(pizza);
+                receipt.addQuantity(id, qty);
+                return receipt.getTotal();
+            }
+        },
+        "check-two-types": {
+            statement: "Should return price of two pizzas of different size",
+            code: 'const pizza1 = new Pizza();\n      const pizza2 = new Pizza("mm");\n      const receipt = new Receipt();\n      receipt.addPizza(pizza1);\n      receipt.addPizza(pizza2);\n      receipt.getTotal();',
+            expected: 20,
+            result: () => {
+                const pizza1 = new Pizza();
+                const pizza2 = new Pizza("mm");
+                const receipt = new Receipt();
+                receipt.addPizza(pizza1);
+                receipt.addPizza(pizza2);
+                return receipt.getTotal();
+            }
         }
     }
 }
