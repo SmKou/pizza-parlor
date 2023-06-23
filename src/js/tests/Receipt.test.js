@@ -158,6 +158,17 @@ const ReceiptTests = {
                 const receipt = new Receipt();
                 return receipt.getTotal();
             }
+        },
+        "check-one-pizza": {
+            statement: "Should return price of a single pizza",
+            code: 'const pizza = new Pizza();\n      const receipt = new Receipt();\n      receipt.addPizza(pizza);\n      receipt.getTotal();',
+            expected: 8,
+            result: () => {
+                const pizza = new Pizza();
+                const receipt = new Receipt();
+                receipt.addPizza(pizza);
+                return receipt.getTotal();
+            }
         }
     }
 }
