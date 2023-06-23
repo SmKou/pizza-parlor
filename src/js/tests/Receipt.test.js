@@ -13,7 +13,7 @@ const ReceiptTests = {
     "Receipt.addPizza()": {
         "check-receipt-updated": {
             statement: "Should increment assignId and currentId and add pizza to pizzas with quantity and total",
-            code: 'const pizza = new Pizza();\n      pizza.setPrice();\n      const receipt = new Receipt();',
+            code: 'const pizza = new Pizza();\n      pizza.setPrice();\n      const receipt = new Receipt();\n      receipt.addPizza(pizza);',
             expected: {
                 pizzas: {
                     "1": {
@@ -38,6 +38,7 @@ const ReceiptTests = {
                 const pizza = new Pizza();
                 pizza.setPrice();
                 const receipt = new Receipt();
+                receipt.addPizza(pizza);
                 return receipt;
             }
         }
