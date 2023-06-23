@@ -2,21 +2,55 @@ const components = {
     "Pizza": PizzaTests
 }
 
-function runTestSuite(component = undefined) {
-    if (component === undefined || !components.hasOwnProperty(component))
-        Object.keys(components).forEach(compKey => {
-            const compTests = components[compKey];
-            runTests(compTests);
-        })
-    else
-        runTests(components[component])
+function consoleInterface() {
+    let options = "";
+    let addLine = false;
+    let addComma = false;
+    for (const component of Object.keys(components)) {
+        if (addLine)
+            options += '\n';
+        else
+            addLine = true;
+        options += component + ': ';
+        for (const describe of Object.keys(components[component])) {
+            if (addComma)
+                options += ', ';
+            else
+                addComma = true;
+            options += describe;
+        }
+        addComma = false;
+    }
+    console.log(`To run tests, call the function, runTestSuite() in the console.\nrunTestSuite() can take up to two arguments: component, function_name (or name for describes). The following list shows "component: ...function_names". Providing only a component will return all the tests on all the describes of that component, whereas providing a component and a function_name will return just the tests for that describe in the component.\n${options}\nDon't forget quotations.`);
 }
 
-function runTests(testSuite, funcName = undefined) {
-    if (funcName !== undefined)
-        runFuncTest(funcName, testSuite[funcName]);
+function runTestSuite(component = undefined, fn = undefined) {
+    if ((component === undefined
+        || !components.hasOwnProperty(component)))
+        Object.keys(components)
+            .forEach(component => {
+                const compTests = components[component];
+                Object
+                    .keys(compTests)
+                    .forEach(fn => runFuncTest(
+                        fn,
+                        compTests[fn]
+                    ))
+            })
+    else if (component !== undefined && fn === undefined)
+        Object
+            .keys(components[component])
+            .forEach(fn => runFuncTest(
+                fn,
+                components[component][fn]
+            ))
+    else if (component !== undefined && fn !== undefined)
+        runFuncTest(
+            fn,
+            components[component][fn]
+        );
     else
-        Object.keys(testSuite).forEach(fn => runFuncTest(fn, testSuite[fn]))
+        console.log('Invalid test request');
 }
 
 function runFuncTest(fn, testCases) {

@@ -142,12 +142,12 @@ const PizzaTests = {
         },
         "change-price-by-cheese": {
             statement: "Should set price to cost with additional cheese",
-            code: 'const size = "";\n      const sauce = [];\n      const cheese = ["mgh", "rct"];\n      const pizza = new Pizza(size, sauce, cheese);\n      pizza.setPrice();',
+            code: 'const size = "";\n      const sauce = [];\n      const cheese = ["prm", "rct"];\n      const pizza = new Pizza(size, sauce, cheese);\n      pizza.setPrice();',
             expected: 8.75,
             result: () => {
                 const size = "";
                 const sauce = [];
-                const cheese = ["mgh", "rct"];
+                const cheese = ["prm", "rct"];
                 const pizza = new Pizza(size, sauce, cheese);
                 pizza.setPrice();
                 return pizza.price;
