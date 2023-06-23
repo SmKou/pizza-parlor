@@ -14,4 +14,6 @@ Receipt.prototype.addPizza = function (pizza) {
     this.currentId = this.assignId;
 }
 
-Receipt.prototype.addQuantity = function (id, qty) {}
+Receipt.prototype.addQuantity = function (id, qty) {
+    this.pizzas[id].qty += qty;
+}
