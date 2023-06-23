@@ -1,5 +1,6 @@
 const components = {
-    "Pizza": PizzaTests
+    "Pizza": PizzaTests,
+    "Receipt": ReceiptTests
 }
 
 function consoleInterface() {

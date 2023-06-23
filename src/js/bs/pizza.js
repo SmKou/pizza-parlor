@@ -63,18 +63,8 @@ function Pizza(size = 'sm', sauce = ['mgh'], cheese = ['moz'], veggies = [], pro
     else
         this.size = 'sm';
     this.price = 0;
-    this.toppings = {
-        sauce: [],
-        cheese: [],
-        veggies: [],
-        protein: []
-    }
-    const input = {
-        sauce,
-        cheese,
-        veggies,
-        protein
-    }
+    this.toppings = { sauce: [], cheese: [], veggies: [], protein: [] }
+    const input = { sauce, cheese, veggies, protein }
     for (const topping of Object.keys(this.toppings)) {
         for (const ipt of input[topping])
             if (PIZZA_ASPECTS[topping].hasOwnProperty(ipt)
