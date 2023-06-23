@@ -126,6 +126,27 @@ const ReceiptTests = {
                     size: (pizza) ? pizza.size : ''
                 }
             }
+        },
+        "no-change-invalid-id": {
+            statement: "Should not change current id or return a pizza if id not found",
+            code: 'const pizza1 = new Pizza();\n      const pizza2 = new Pizza();\n      const id = 0;\n      const receipt = new Receipt();\n      receipt.addPizza(pizza1);\n      receipt.addPizza(pizza2);\n      const pizza = receipt.getPizza(id);',
+            expected: {
+                curr: 2,
+                pizza: false
+            },
+            result: () => {
+                const pizza1 = new Pizza();
+                const pizza2 = new Pizza("mm");
+                const id = 1;
+                const receipt = new Receipt();
+                receipt.addPizza(pizza1);
+                receipt.addPizza(pizza2);
+                const pizza = receipt.getPizza(id);
+                return {
+                    curr: receipt.currentId,
+                    pizza
+                }
+            }
         }
     }
 }
