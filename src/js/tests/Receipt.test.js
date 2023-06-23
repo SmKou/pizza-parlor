@@ -27,8 +27,7 @@ const ReceiptTests = {
                                 protein: []
                             }
                         },
-                        qty: 1,
-                        ttl: 8
+                        qty: 1
                     }
                 },
                 assignId: 1,
@@ -161,10 +160,11 @@ const ReceiptTests = {
         },
         "check-one-pizza": {
             statement: "Should return price of a single pizza",
-            code: 'const pizza = new Pizza();\n      const receipt = new Receipt();\n      receipt.addPizza(pizza);\n      receipt.getTotal();',
+            code: 'const pizza = new Pizza();\n      pizza.setPrice();\n      const receipt = new Receipt();\n      receipt.addPizza(pizza);\n      receipt.getTotal();',
             expected: 8,
             result: () => {
                 const pizza = new Pizza();
+                pizza.setPrice();
                 const receipt = new Receipt();
                 receipt.addPizza(pizza);
                 return receipt.getTotal();
@@ -172,10 +172,11 @@ const ReceiptTests = {
         },
         "check-one-type-qty-two": {
             statement: "Should return doubled price for quantity of two",
-            code: 'const pizza = new Pizza();\n      const id = 1;\n      const qty = 1;\n      const receipt = new Receipt();\n      receipt.addPizza(pizza);\n      receipt.addQuantity(id, qty);\n      receipt.getTotal();',
+            code: 'const pizza = new Pizza();\n      pizza.setPrice();\n      const id = 1;\n      const qty = 1;\n      const receipt = new Receipt();\n      receipt.addPizza(pizza);\n      receipt.addQuantity(id, qty);\n      receipt.getTotal();',
             expected: 16,
             result: () => {
                 const pizza = new Pizza();
+                pizza.setPrice();
                 const id = 1;
                 const qty = 1;
                 const receipt = new Receipt();
@@ -186,11 +187,13 @@ const ReceiptTests = {
         },
         "check-two-types": {
             statement: "Should return price of two pizzas of different size",
-            code: 'const pizza1 = new Pizza();\n      const pizza2 = new Pizza("mm");\n      const receipt = new Receipt();\n      receipt.addPizza(pizza1);\n      receipt.addPizza(pizza2);\n      receipt.getTotal();',
+            code: 'const pizza1 = new Pizza();\n      pizza1.setPrice();\n      const pizza2 = new Pizza("mm");\n      pizza2.setPrice();\n      const receipt = new Receipt();\n      receipt.addPizza(pizza1);\n      receipt.addPizza(pizza2);\n      receipt.getTotal();',
             expected: 20,
             result: () => {
                 const pizza1 = new Pizza();
+                pizza1.setPrice();
                 const pizza2 = new Pizza("mm");
+                pizza2.setPrice();
                 const receipt = new Receipt();
                 receipt.addPizza(pizza1);
                 receipt.addPizza(pizza2);

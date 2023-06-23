@@ -8,8 +8,7 @@ Receipt.prototype.addPizza = function (pizza) {
     this.assignId++;
     this.pizzas[this.assignId] = {
         pizza,
-        qty: 1,
-        ttl: pizza.price
+        qty: 1
     }
     this.currentId = this.assignId;
 }
@@ -31,4 +30,8 @@ Receipt.prototype.getPizza = function (id) {
 Receipt.prototype.getTotal = function () {
     if (!Object.keys(this.pizzas).length)
         return 0;
+    let total = 0;
+    for (const order of Object.values(this.pizzas))
+        total += order.pizza.price * order.qty;
+    return total;
 }
