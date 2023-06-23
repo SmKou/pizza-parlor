@@ -20,3 +20,5 @@ Receipt.prototype.addQuantity = function (id, qty) {
     else
         return false;
 }
+
+Receipt.prototype.getPizza = function (id) {}
