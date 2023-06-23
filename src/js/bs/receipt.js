@@ -29,5 +29,6 @@ Receipt.prototype.getPizza = function (id) {
 }
 
 Receipt.prototype.getTotal = function () {
-    return;
+    if (!Object.keys(this.pizzas).length)
+        return 0;
 }
