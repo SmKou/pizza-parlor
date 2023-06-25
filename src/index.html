@@ -180,36 +180,28 @@
                     Ham
                 </label>
             </div>
-            <h3>Your Order</h3>
-            <div class="options" id="qty">
-                <div class="pizza-list">
-                    <div class="container" id="order-n">
-                        <div class="row" id="pizza-n">
-                            <div class="col" id="qty-n"></div>
-                            <div class="col">
-                                <div class="row" id="size-n">
-                                    <span class="size"></span> pizza<span class="multiple hidden">s</span>
-                                </div>
-                                <div class="row" id="sauce-n">Sauce: <span></span></div>
-                                <div class="row" id="cheese-n">Cheese: <span></span></div>
-                                <div class="row" id="veggies-n">Veggies: <span></span></div>
-                                <div class="row" id="protein-n">Protein: <span></span></div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <label for="addto-n">
-                                Add to qty:
-                                <input type="number" min="1" max="10" id="addto-n">
-                            </label>
-                        </div>
-                    </div>
-                </div>
+            <p>The maximum number of pizzas for a party order is 20. Choose your quantity:</p>
+            <div class="options">
+                <label for="quantity">
+                    Qty:
+                    <input type="number" name="quantity" id="quantity" min="1" max="20" pattern="/\d{1,2}/">
+                </label>
             </div>
-            <div class="form-mng">
-                <input type="submit" class="button-primary" value="Submit Order">
-                <input type="reset" value="Clear Order">
+            <div class="mng">
+                <input type="submit" value="Submit Selection">
+                <input type="reset" value="Clear Selection">
             </div>
         </form>
+        <section class="order hidden">
+            <h3>Your Order</h3>
+            <ul>
+                <li><span class="qty"></span> <span class="size"></span> pizza<span class="multiple hidden">s</span></li>
+                <li>Sauce: <span class="sauce"></span></li>
+                <li>Cheese: <span class="cheese"></span></li>
+                <li>Veggies: <span class="veggies"></span></li>
+                <li>Protein: <span class="protein"></span></li>
+            </ul>
+        </section>
     </main>
     <!-- Scripts -->
     <script src="js/bs/Pizza.js"></script>
