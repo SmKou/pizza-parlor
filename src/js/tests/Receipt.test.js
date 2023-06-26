@@ -12,12 +12,12 @@ const ReceiptTests = {
     },
     "Receipt.addPizza()": {
         "check-receipt-updated": {
-            statement: "Should increment assignId and add pizza to pizzas with quantity and total",
+            statement: "Should increment assignId and add pizza to pizzas with default quantity",
             code: 'const pizza = new Pizza();\n      pizza.setPrice();\n      const receipt = new Receipt();\n      receipt.addPizza(pizza);',
             expected: {
                 pizzas: {
                     "1": {
-                        pizza: {
+                        options: {
                             size: 'sm',
                             price: 8,
                             toppings: {
@@ -39,67 +39,30 @@ const ReceiptTests = {
                 receipt.addPizza(pizza);
                 return receipt;
             }
-        }
-    },
-    "Receipt.setQuantity()": {
-        "change-only-pizza": {
-            statement: "Should change quantity of only pizza in receipt",
-            code: 'const id = 1;\n      const qty = 2;\n      const pizza = new Pizza();\n      const receipt = new Receipt();\n      receipt.addPizza(pizza);\n      receipt.addQuantity(id, qty);',
-            expected: 2,
-            result: () => {
-                const id = 1;
-                const qty = 2;
-                const pizza = new Pizza();
-                const receipt = new Receipt();
-                receipt.addPizza(pizza);
-                receipt.setQuantity(id, qty);
-                return receipt.pizzas[id].qty;
-            }
         },
-        "error-invalid-id": {
-            statement: "Should not add quantity to only pizza if id is invalid",
-            code: 'const id = 0;\n      const qty = 2;\n      const pizza = new Pizza();\n      const receipt = new Receipt();\n      receipt.addPizza(pizza);\n      receipt.addQuantity(id, qty);',
+        "check-quantity-set": {
+            statement: "Should update receipt with pizza and given quantity",
+            code: 'const pizza = new Pizza();\n      const qty = 2;\n      pizza.setPrice();\n      const receipt = new Receipt();\n      receipt.addPizza(pizza, qty);',
             expected: {
-                qty: 1,
-                resp: false
+                options: {
+                    size: 'sm',
+                    price: 8,
+                    toppings: {
+                        sauce: ['mgh'],
+                        cheese: ['moz'],
+                        veggies: [],
+                        protein: []
+                    }
+                },
+                qty: 2
             },
             result: () => {
-                const id = 2;
-                const qty = 2;
                 const pizza = new Pizza();
-                const receipt = new Receipt();
-                receipt.addPizza(pizza);
-                const resp = receipt.setQuantity(id, qty);
-                return {
-                    qty: receipt.pizzas[1].qty,
-                    resp
-                };
-            }
-        },
-        "change-pizza-by-id": {
-            statement: "Should add quantity to specified pizza",
-            code: 'const id = 2;\n      const qty = 2;\n      const pizza1 = new Pizza();\n      const pizza2 = new Pizza();\n      const pizza3 = new Pizza();\n      const receipt = new Receipt();\n      receipt.addPizza(pizza1);\n      receipt.addPizza(pizza2)\n      receipt.addPizza(pizza3)\n      receipt.addQuantity(id, qty);',
-            expected: {
-                qty1: 1,
-                qty2: 2,
-                qty3: 1
-            },
-            result: () => {
-                const id = 2;
                 const qty = 2;
-                const pizza1 = new Pizza();
-                const pizza2 = new Pizza();
-                const pizza3 = new Pizza();
+                pizza.setPrice();
                 const receipt = new Receipt();
-                receipt.addPizza(pizza1);
-                receipt.addPizza(pizza2);
-                receipt.addPizza(pizza3);
-                receipt.setQuantity(id, qty);
-                return {
-                    qty1: receipt.pizzas[1].qty,
-                    qty2: receipt.pizzas[2].qty,
-                    qty3: receipt.pizzas[3].qty
-                }
+                receipt.addPizza(pizza, qty);
+                return receipt.pizzas[1]
             }
         }
     },
@@ -172,11 +135,9 @@ const ReceiptTests = {
             result: () => {
                 const pizza = new Pizza();
                 pizza.setPrice();
-                const id = 1;
                 const qty = 2;
                 const receipt = new Receipt();
-                receipt.addPizza(pizza);
-                receipt.setQuantity(id, qty);
+                receipt.addPizza(pizza, qty);
                 return receipt.getTotal();
             }
         },

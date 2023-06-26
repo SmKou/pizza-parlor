@@ -3,19 +3,12 @@ function Receipt() {
     this.assignId = 0;
 }
 
-Receipt.prototype.addPizza = function (pizza) {
+Receipt.prototype.addPizza = function (pizza, qty = 1) {
     this.assignId++;
     this.pizzas[this.assignId] = {
         options: pizza,
-        qty: 1
+        qty
     }
-}
-
-Receipt.prototype.setQuantity = function (id, qty) {
-    if (this.pizzas.hasOwnProperty(id))
-        this.pizzas[id].qty = qty;
-    else
-        return false;
 }
 
 Receipt.prototype.removePizza = function (id) {

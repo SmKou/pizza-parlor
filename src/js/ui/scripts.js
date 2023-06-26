@@ -31,13 +31,8 @@ function handleFormSubmission() {
     const qty = document.querySelector('[name="quantity"]').value;
 
     const pizza = new Pizza(size, sauce, cheese, veggies, protein);
-    if (!Object.keys(receipt.pizzas[receipt.currentId].options).length) {
-        receipt.pizzas[receipt.currentId].options = pizza;
-    }
-        
-    else {
-        // mod pizza;
-    }
+    receipt.addPizza(pizza);
+    receipt.setQuantity(pizza)
 }
 
 function resetForm(e) {
