@@ -27,6 +27,10 @@ Receipt.prototype.getPizza = function (id) {
     return this.pizzas[id].options;
 }
 
+Receipt.prototype.removePizza = function (id) {
+    
+}
+
 Receipt.prototype.getTotal = function () {
     if (!Object.keys(this.pizzas).length)
         return 0;

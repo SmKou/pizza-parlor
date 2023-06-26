@@ -148,6 +148,27 @@ const ReceiptTests = {
             }
         }
     },
+    "Receipt.removePizza()": {
+        "no-change-invalid-id": {
+            statement: "Should return false for invalid id",
+            code: 'const id = 2;\n      const pizza = new Pizza();\n      const receipt = new Receipt();\n      receipt.addPizza(pizza);\n      receipt.removePizza(id);',
+            expected: {
+                length: 1,
+                resp: false
+            },
+            result: () => {
+                const id = 2;
+                const pizza = new Pizza();
+                const receipt = new Receipt();
+                receipt.addPizza(pizza);
+                const resp = receipt.removePizza(id);
+                return {
+                    length: Object.keys(receipt.pizzas).length,
+                    resp
+                }
+            }
+        }
+    },
     "Receipt.getTotal()": {
         "empty-returns-zero": {
             statement: "Should return 0 if no pizzas on receipt",

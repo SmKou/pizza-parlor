@@ -6,14 +6,14 @@ function load() {
     form.addEventListener('submit', () => handleFormSubmission(receipt));
     form.addEventListener('reset', () => resetForm(receipt));
 
-    const order = document.querySelector('pizza-list');
+    const order = document.querySelector('.pizza-list');
     order.addEventListener('click', e => {
         const id = e.target.id.split('-')[1];
         const remove = document.querySelector('remove-btn');
         remove.setAttribute(id, 'rm-' + id);
     });
-    document.querySelector('add-btn').addEventListener('click', () => { });
-    document.querySelector('remove-btn').addEventListener('click', e => {
+    document.querySelector('.add-btn').addEventListener('click', () => { });
+    document.querySelector('.remove-btn').addEventListener('click', e => {
         const id = e.target.id.split('-')[1];
     })
 }
