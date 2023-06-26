@@ -172,7 +172,7 @@ const ReceiptTests = {
             statement: "Should delete designated pizza from receipt and return true",
             code: 'const id = 1;\n      const pizza = new Pizza();\n      const receipt = new Receipt();\n      receipt.addPizza(pizza);\n      receipt.removePizza(id);',
             expected: {
-                length: 1,
+                length: 0,
                 resp: true
             },
             result: () => {
