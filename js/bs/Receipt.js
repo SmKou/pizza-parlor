@@ -25,7 +25,8 @@ Receipt.prototype.getTotal = function () {
     if (!Object.keys(this.pizzas).length)
         return 0;
     let total = 0;
-    for (const order of Object.values(this.pizzas))
+    for (const order of Object.values(this.pizzas)) {
         total += order.options.price * order.qty;
+    }
     return total;
 }

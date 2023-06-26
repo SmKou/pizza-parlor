@@ -41,11 +41,11 @@ const PIZZA_ASPECTS = {
         'pin': 'pineapples'
     },
     protein: {
-        'pep': 'Pepperoni',
-        'ssg': 'Sausage',
-        'eg': 'Eggs',
-        'bs': 'Butter shrimp',
-        'hm': 'Ham'
+        'pep': 'pepperoni',
+        'ssg': 'sausage',
+        'eg': 'eggs',
+        'bs': 'butter shrimp',
+        'hm': 'ham'
     }
 }
 
