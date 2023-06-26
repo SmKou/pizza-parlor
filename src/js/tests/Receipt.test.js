@@ -3,7 +3,7 @@ const ReceiptTests = {
         "check-object-exists": {
             statement: "Should create a receipt object",
             code: 'const receipt = new Receipt();',
-            expected: { pizzas: {}, assignId: 0, currentId: 0 },
+            expected: { pizzas: {}, assignId: 0 },
             result: () => {
                 const receipt = new Receipt();
                 return receipt;
@@ -12,7 +12,7 @@ const ReceiptTests = {
     },
     "Receipt.addPizza()": {
         "check-receipt-updated": {
-            statement: "Should increment assignId and currentId and add pizza to pizzas with quantity and total",
+            statement: "Should increment assignId and add pizza to pizzas with quantity and total",
             code: 'const pizza = new Pizza();\n      pizza.setPrice();\n      const receipt = new Receipt();\n      receipt.addPizza(pizza);',
             expected: {
                 pizzas: {
@@ -30,8 +30,7 @@ const ReceiptTests = {
                         qty: 1
                     }
                 },
-                assignId: 1,
-                currentId: 1
+                assignId: 1
             },
             result: () => {
                 const pizza = new Pizza();
@@ -104,50 +103,6 @@ const ReceiptTests = {
             }
         }
     },
-    "Receipt.getPizza()": {
-        "check-return": {
-            statement: "Should return pizza corresponding to id and change current id",
-            code: 'const pizza1 = new Pizza();\n      const pizza2 = new Pizza("mm");\n      const id = 1;\n      const receipt = new Receipt();\n      receipt.addPizza(pizza1);\n      receipt.addPizza(pizza2);\n      const pizza = receipt.getPizza(id);',
-            expected: {
-                curr: 1,
-                size: 'sm' 
-            }, 
-            result: () => {
-                const pizza1 = new Pizza();
-                const pizza2 = new Pizza("mm");
-                const id = 1;
-                const receipt = new Receipt();
-                receipt.addPizza(pizza1);
-                receipt.addPizza(pizza2);
-                const pizza = receipt.getPizza(id);
-                return {
-                    curr: receipt.currentId,
-                    size: (pizza) ? pizza.size : ''
-                }
-            }
-        },
-        "no-change-invalid-id": {
-            statement: "Should not change current id or return a pizza if id not found",
-            code: 'const pizza1 = new Pizza();\n      const pizza2 = new Pizza();\n      const id = 0;\n      const receipt = new Receipt();\n      receipt.addPizza(pizza1);\n      receipt.addPizza(pizza2);\n      const pizza = receipt.getPizza(id);',
-            expected: {
-                curr: 2,
-                pizza: false
-            },
-            result: () => {
-                const pizza1 = new Pizza();
-                const pizza2 = new Pizza();
-                const id = 0;
-                const receipt = new Receipt();
-                receipt.addPizza(pizza1);
-                receipt.addPizza(pizza2);
-                const pizza = receipt.getPizza(id);
-                return {
-                    curr: receipt.currentId,
-                    pizza
-                }
-            }
-        }
-    },
     "Receipt.removePizza()": {
         "no-change-invalid-id": {
             statement: "Should return false for invalid id",
@@ -183,29 +138,6 @@ const ReceiptTests = {
                 const resp = receipt.removePizza(id);
                 return {
                     length: Object.keys(receipt.pizzas).length,
-                    resp
-                }
-            }
-        },
-        "change-current-id": {
-            statement: "Should change current id to id of last pizza",
-            code: 'const id = 2;\n      const pizza = new Pizza();\n      const pizza2 = new Pizza();\n      const pizza3 = new Pizza();\n      const receipt = new Receipt();\n      receipt.addPizza(pizza);\n      receipt.addPizza(pizza2);\n      receipt.addPizza(pizza3);\n      receipt.removePizza(id);',
-            expected: {
-                id: 3,
-                resp: true
-            },
-            result: () => {
-                const id = 2;
-                const pizza = new Pizza();
-                const pizza2 = new Pizza();
-                const pizza3 = new Pizza();
-                const receipt = new Receipt();
-                receipt.addPizza(pizza);
-                receipt.addPizza(pizza2);
-                receipt.addPizza(pizza3);
-                const resp = receipt.removePizza(id);
-                return {
-                    id: receipt.currentId,
                     resp
                 }
             }

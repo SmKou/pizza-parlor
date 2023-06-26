@@ -23,3 +23,7 @@ function generatePizzaList(pizzas) {
         order.append(ul);
     }
 }
+
+function showTotal(receipt) {
+    document.querySelector('.total').innerText = '$' + receipt.getTotal();
+}

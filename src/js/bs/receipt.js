@@ -1,7 +1,6 @@
 function Receipt() {
     this.pizzas = {};
     this.assignId = 0;
-    this.currentId = 0;
 }
 
 Receipt.prototype.addPizza = function (pizza) {
@@ -10,7 +9,6 @@ Receipt.prototype.addPizza = function (pizza) {
         options: pizza,
         qty: 1
     }
-    this.currentId = this.assignId;
 }
 
 Receipt.prototype.setQuantity = function (id, qty) {
@@ -18,13 +16,6 @@ Receipt.prototype.setQuantity = function (id, qty) {
         this.pizzas[id].qty = qty;
     else
         return false;
-}
-
-Receipt.prototype.getPizza = function (id) {
-    if (!this.pizzas.hasOwnProperty(id))
-        return false;
-    this.currentId = id;
-    return this.pizzas[id].options;
 }
 
 Receipt.prototype.removePizza = function (id) {
