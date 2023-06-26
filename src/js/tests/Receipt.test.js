@@ -167,6 +167,25 @@ const ReceiptTests = {
                     resp
                 }
             }
+        },
+        "change-by-id": {
+            statement: "Should delete designated pizza from receipt and return true",
+            code: 'const id = 1;\n      const pizza = new Pizza();\n      const receipt = new Receipt();\n      receipt.addPizza(pizza);\n      receipt.removePizza(id);',
+            expected: {
+                length: 1,
+                resp: true
+            },
+            result: () => {
+                const id = 1;
+                const pizza = new Pizza();
+                const receipt = new Receipt();
+                receipt.addPizza(pizza);
+                const resp = receipt.removePizza(id);
+                return {
+                    length: Object.keys(receipt.pizzas).length,
+                    resp
+                }
+            }
         }
     },
     "Receipt.getTotal()": {
