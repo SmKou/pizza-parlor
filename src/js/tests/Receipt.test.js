@@ -189,18 +189,20 @@ const ReceiptTests = {
         },
         "change-current-id": {
             statement: "Should change current id to id of last pizza",
-            code: 'const id = 2;\n      const pizza = new Pizza();\n      const pizza2 = new Pizza();\n      const receipt = new Receipt();\n      receipt.addPizza(pizza);\n      receipt.addPizza(pizza2);\n      receipt.removePizza(id);',
+            code: 'const id = 2;\n      const pizza = new Pizza();\n      const pizza2 = new Pizza();\n      const pizza3 = new Pizza();\n      const receipt = new Receipt();\n      receipt.addPizza(pizza);\n      receipt.addPizza(pizza2);\n      receipt.addPizza(pizza3);\n      receipt.removePizza(id);',
             expected: {
-                id: 1,
+                id: 3,
                 resp: true
             },
             result: () => {
                 const id = 2;
                 const pizza = new Pizza();
                 const pizza2 = new Pizza();
+                const pizza3 = new Pizza();
                 const receipt = new Receipt();
                 receipt.addPizza(pizza);
                 receipt.addPizza(pizza2);
+                receipt.addPizza(pizza3);
                 const resp = receipt.removePizza(id);
                 return {
                     id: receipt.currentId,
