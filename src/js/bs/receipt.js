@@ -7,15 +7,15 @@ function Receipt() {
 Receipt.prototype.addPizza = function (pizza) {
     this.assignId++;
     this.pizzas[this.assignId] = {
-        pizza,
+        options: pizza,
         qty: 1
     }
     this.currentId = this.assignId;
 }
 
-Receipt.prototype.addQuantity = function (id, qty) {
+Receipt.prototype.setQuantity = function (id, qty) {
     if (this.pizzas.hasOwnProperty(id))
-        this.pizzas[id].qty += qty;
+        this.pizzas[id].qty = qty;
     else
         return false;
 }
@@ -24,7 +24,7 @@ Receipt.prototype.getPizza = function (id) {
     if (!this.pizzas.hasOwnProperty(id))
         return false;
     this.currentId = id;
-    return this.pizzas[id].pizza;
+    return this.pizzas[id].options;
 }
 
 Receipt.prototype.getTotal = function () {
@@ -32,6 +32,6 @@ Receipt.prototype.getTotal = function () {
         return 0;
     let total = 0;
     for (const order of Object.values(this.pizzas))
-        total += order.pizza.price * order.qty;
+        total += order.options.price * order.qty;
     return total;
 }

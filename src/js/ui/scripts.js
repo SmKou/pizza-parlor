@@ -1,9 +1,10 @@
 window.onload = load;
 
 function load() {
+    const receipt = new Receipt();
     const form = document.querySelector('form');
-    form.addEventListener('submit', handleFormSubmission);
-    form.addEventListener('reset', resetForm);
+    form.addEventListener('submit', () => handleFormSubmission(receipt));
+    form.addEventListener('reset', () => resetForm(receipt));
 }
 
 function handleFormSubmission() { 
