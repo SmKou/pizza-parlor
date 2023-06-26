@@ -31,6 +31,7 @@ Receipt.prototype.removePizza = function (id) {
     if (!this.pizzas.hasOwnProperty(id))
         return false;
     delete this.pizzas[id];
+    this.currentId = id - 1;
     return true;
 }
 
